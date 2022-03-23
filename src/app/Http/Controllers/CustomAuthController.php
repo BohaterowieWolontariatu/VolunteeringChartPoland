@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Classes\Authentication;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,20 +26,7 @@ class CustomAuthController extends Controller
      */
     public function customLogin(Request $request): RedirectResponse
     {
-        $request->validate(
-            [
-                'email' => 'required',
-                'password' => 'required',
-            ]
-        );
-
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                ->withSuccess('Signed in');
-        }
-
-        return redirect("login")->withSuccess('Login details are not valid');
+        return (new Authentication())->login($request);
     }
 
 
@@ -59,34 +45,11 @@ class CustomAuthController extends Controller
      */
     public function customRegistration(Request $request): RedirectResponse
     {
-        $request->validate(['name' => 'required', 'email' => 'required|email|unique:users', 'password' => 'required|min:6']);
-
-        $data = $request->all();
-        $check = $this->create($data);
-
-        return redirect("dashboard")->withSuccess('You have signed-in');
+        return (new Authentication())->register($request);
     }
 
 
-    /**
-     * @param array $data
-     * @return \App\Models\User
-     */
-    public function create(array $data): User
-    {
-        return User::create(
-            [
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]
-        );
-    }
-
-
-    /**
-     * @return \Illuminate\Routing\Redirector
-     */
+//TODO 23.03.2022 Grzegorz Bielski: przepisać poniższą metodę, aby zwracała jeden typ
     public function dashboard()
     {
         if (Auth::check()) {
