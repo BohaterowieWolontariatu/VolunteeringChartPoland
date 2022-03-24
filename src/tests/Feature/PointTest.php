@@ -2,20 +2,22 @@
 
 namespace Tests\Feature;
 
-use App\Models\Point;
-use Database\Factories\PointFactory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
+use App\Models\Point;
+use Illuminate\Testing\Fluent\AssertableJson;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PointTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $baseUrl = 'api/points';
+    protected string $baseUrl = 'api/points';
 
 
-    public function test_index_success()
+    /**
+     * @return void
+     */
+    public function test_index_success(): void
     {
         $pointCount = 3;
 
@@ -44,7 +46,10 @@ class PointTest extends TestCase
     }
 
 
-    public function test_create_success()
+    /**
+     * @return void
+     */
+    public function test_create_success(): void
     {
         $pointData = [
             'name' => 'Medison sklep',
@@ -68,19 +73,22 @@ class PointTest extends TestCase
     }
 
 
-    public function test_update_success()
+    /**
+     * @return void
+     */
+    public function test_update_success(): void
     {
         $pointData = collect(
             [
                 'name' => 'Medison sklep',
-                'slug' => 'Medison sklep',
+                'slug' => 'medison_sklep',
                 'description' => 'Lorem Ipsum je.',
             ]
         );
         $pointDataToUpdate = collect(
             [
                 'name' => 'new name',
-                'slug' => 'Medison sklep',
+                'slug' => 'new_name',
                 'description' => 'Lorem Ipsum je.',
             ]
         );
