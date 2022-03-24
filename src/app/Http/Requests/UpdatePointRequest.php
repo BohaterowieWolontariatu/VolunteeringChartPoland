@@ -13,8 +13,9 @@ class UpdatePointRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,7 +25,19 @@ class UpdatePointRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required',
+                'min:2',
+                'max:255',
+            ],
+            'slug' => [
+                'required',
+                'max:255',
+            ],
+            'description' => [
+                'required',
+                'max:255',
+            ],
         ];
     }
 }
