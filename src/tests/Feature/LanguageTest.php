@@ -7,11 +7,11 @@ use App\Models\Point;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PointTest extends TestCase
+class LanguageTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected string $baseUrl = 'api/points';
+    protected string $baseUrl = 'api/languages';
 
 
     /**
@@ -19,26 +19,27 @@ class PointTest extends TestCase
      */
     public function test_index_success(): void
     {
-        $pointCount = 3;
+        $languageCount = 3;
 
-        $points = Point::factory()->count($pointCount)->create()->sortBy('name')->values();
-        $point = $points->first();
+        $languages = Point::factory()->count($languageCount)->create()->sortBy('name')->values();
+        $language = $languages->first();
 
 
         $response = $this->get(
-            $this->makeUrl(),
+            $this->getBaseUrl(),
         );
 
         $response
             ->assertStatus(200)
             ->assertJson(fn(AssertableJson $json) => $json
                 ->has('meta', fn($json) => $json
-                    ->where('total', $pointCount)
+                    ->where('total', $languageCount)
                     ->etc())
                 ->has('links')
                 ->has('data', 3, fn($json) => $json
-                    ->where('id', $point->id)
-                    ->where('slug', $point->slug)
+                    ->where('id', $language->id)
+                    ->where('code', $language->code)
+                    ->where('name', $language->name)
                     ->etc()
                 )
             );
@@ -48,40 +49,22 @@ class PointTest extends TestCase
     /**
      * @return void
      */
-
-    public function test_can_successfully_update_point()
+    public function test_create_success(): void
     {
-        $this->actingAs($user = User::factory()->create());
-
-        $item = Point::factory()->create();
-
-
-        $data = [
-            'name' => 'test name',
-            'code' => 'DD',
+        $languageData = [
+            'name' => 'Test',
+            'code' => 'PL',
         ];
-
-
-        $response = $this->put(
-            $this->makeUrl($item->id),
+        $response = $this->post(
+            $this->getBaseUrl(),
             $data
         );
-
 
         $response
             ->assertStatus(302);
 
-        $this->assertDatabaseHas(
-            'points',
-            array_merge(
-                [
-                    id => $item->id,
-                ],
-                $data
-            )
-        );
+        $this->assertDatabaseHas('points', $data);
     }
-
 
 
     /**
@@ -89,14 +72,12 @@ class PointTest extends TestCase
      */
     public function test_update_success(): void
     {
-        $pointData = collect(
-            [
-                'name' => 'Medison sklep',
-                'slug' => 'medison_sklep',
-                'description' => 'Lorem Ipsum je.',
-            ]
-        );
-        $pointDataToUpdate = collect(
+        $languageData = [
+            'name' => 'Test',
+            'code' => 'PL',
+        ];
+
+        $languageDataToUpdate = collect(
             [
                 'name' => 'new name',
                 'slug' => 'new_name',
@@ -105,12 +86,12 @@ class PointTest extends TestCase
         );
 
 
-        $point = Point::factory()->create($pointData->toArray());
+        $language = Point::factory()->create($languageData->toArray());
 
 
         $response = $this->put(
-            $this->getBaseUrl() . '/' . $point->id,
-            $pointDataToUpdate->toArray()
+            $this->getBaseUrl() . '/' . $language->id,
+            $languageDataToUpdate->toArray()
         );
 
         $response
@@ -118,9 +99,9 @@ class PointTest extends TestCase
             ->assertJson(fn(AssertableJson $json) => $json
                 ->has('data', fn($json) => $json
                     ->whereAll(
-                        $pointData
+                        $languageData
                             ->merge(
-                                $pointDataToUpdate->toArray()
+                                $languageDataToUpdate->toArray()
                             )
                             ->toArray()
                     )
@@ -129,4 +110,12 @@ class PointTest extends TestCase
             );
     }
 
+
+    /**
+     * @return string
+     */
+    protected function getBaseUrl(): string
+    {
+        return $this->baseUrl;
+    }
 }
