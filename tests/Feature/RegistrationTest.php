@@ -21,11 +21,14 @@ class RegistrationTest extends TestCase
     public function test_new_users_can_register()
     {
         $response = $this->post('/register', [
-            'name' => 'Test User',
+            'name' => 'Name',
+            'surname' => 'Surname',
             'email' => 'test@example.com',
+            'pesel' => '12345678901',
+            'phone' => '555 222 111',
             'password' => 'password',
             'password_confirmation' => 'password',
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
+            'has_agreement_signed' => 0,
         ]);
 
         $this->assertAuthenticated();

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PointController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,16 +27,21 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+// TU DODAJEMY ROUTY. MAJĄ ZABEZPIECZENIE GDY NIE WYPELNIMY POROZUMIENIA
+Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->group(function () {
+    Route::resource('points', PointController::class);
+    Route::resource('languages', LanguageController::class);
+});
+
+// GRUPA ROUTÓW UŻYWANA DO ZATRZYMANIA UŻYTKOWNIKA NA FORMULARZU POROZUMIENIA.
+Route::middleware(['auth:sanctum', 'verified', 'active'])->group(function () {
     Route::group(['prefix' => 'agreement'], function () {
         Route::get('/', [AgreementController::class, 'create'])->name('agreement.create');
+        Route::post('/', [AgreementController::class, 'store'])->name('agreement.store');
     });
-    Route::resource('points', PointController::class);
-    Route::resource('languages', PointController::class);
-
 });
