@@ -69,7 +69,7 @@
 </template>
 
 <script>
-    import { defineComponent } from 'vue'
+    import { defineComponent } from '@vue/composition-api'
     import JetButton from '@/Jetstream/Button.vue'
     import JetFormSection from '@/Jetstream/FormSection.vue'
     import JetInput from '@/Jetstream/Input.vue'

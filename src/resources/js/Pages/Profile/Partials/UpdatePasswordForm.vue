@@ -41,7 +41,7 @@
 </template>
 
 <script>
-    import { defineComponent } from 'vue'
+    import { defineComponent } from '@vue/composition-api'
     import JetActionMessage from '@/Jetstream/ActionMessage.vue'
     import JetButton from '@/Jetstream/Button.vue'
     import JetFormSection from '@/Jetstream/FormSection.vue'

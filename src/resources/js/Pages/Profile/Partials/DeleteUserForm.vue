@@ -53,7 +53,7 @@
 </template>
 
 <script>
-    import { defineComponent } from 'vue'
+    import { defineComponent } from '@vue/composition-api'
     import JetActionSection from '@/Jetstream/ActionSection.vue'
     import JetDialogModal from '@/Jetstream/DialogModal.vue'
     import JetDangerButton from '@/Jetstream/DangerButton.vue'
