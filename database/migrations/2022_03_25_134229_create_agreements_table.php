@@ -17,7 +17,7 @@ class CreateAgreementsTable extends Migration
         Schema::create('agreements', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->string('address');
+            $table->tinyText('address');
             $table->date('sign_date');
             $table->boolean('is_adult');
             $table->boolean('agree_to_covid_recommendations');

@@ -14,7 +14,31 @@ class StoreAgreementRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'address' => [
+                'required',
+                'string',
+                'max:100',
+            ],
+            'sign_date' => [
+                'required',
+                'date',
+            ],
+            'is_adult' => [
+                'required',
+                'boolean',
+            ],
+            'agree_to_covid_recommendations' => [
+                'required',
+                'boolean',
+            ],
+            'data_is_valid' => [
+                'required',
+                'boolean',
+            ],
+            'agree_to_free_process_image' => [
+                'required',
+                'boolean',
+            ],
         ];
     }
 }
