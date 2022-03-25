@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::group(['prefix' => 'agreement'], function () {
         Route::get('/', [AgreementController::class, 'create'])->name('agreement.create');
+        Route::post('/', [AgreementController::class, 'store'])->name('agreement.store');
     });
     Route::resource('points', PointController::class);
 });
