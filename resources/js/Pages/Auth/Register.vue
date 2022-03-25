@@ -12,10 +12,27 @@
         <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus
                    autocomplete="name"/>
       </div>
+      <div class="mt-4">
+        <jet-label for="surname" value="Surname"/>
+        <jet-input id="surname" type="text" class="mt-1 block w-full" v-model="form.surname" required
+                   autocomplete="surname"/>
+      </div>
 
       <div class="mt-4">
         <jet-label for="email" value="Email"/>
         <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required/>
+      </div>
+
+      <div class="mt-4">
+        <jet-label for="pesel" value="Pesel"/>
+        <jet-input id="pesel" type="text" class="mt-1 block w-full" v-model="form.pesel" required
+                   autocomplete="pesel"/>
+      </div>
+
+      <div class="mt-4">
+        <jet-label for="phone" value="Phone"/>
+        <jet-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required
+                   autocomplete="phone"/>
       </div>
 
       <div class="mt-4">
@@ -31,8 +48,8 @@
       </div>
 
       <div class="mt-4">
-        <input type="checkbox" class="form-checkbox" id="">
-        <jet-label for="password_confirmation" value="Confirm Password"/>
+        <jet-checkbox name="has_agreement_signed" id="has_agreement_signed" v-model="form.has_agreement_signed"/>
+        <label for="has_agreement_signed">Podpisałem porozumienie o wolontariacie</label>
       </div>
 
       <div class="mt-4" v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature">
@@ -87,10 +104,14 @@ export default {
     return {
       form: this.$inertia.form({
         name: '',
+        surname: '',
+        pesel: '',
+        phone: '',
         email: '',
         password: '',
         password_confirmation: '',
         terms: false,
+        has_agreement_signed: false,
       })
     }
   },
