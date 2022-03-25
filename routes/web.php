@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PointController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,6 +35,7 @@ Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->get('/da
 // TU DODAJEMY ROUTY. MAJĄ ZABEZPIECZENIE GDY NIE WYPELNIMY POROZUMIENIA
 Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->group(function () {
     Route::resource('points', PointController::class);
+    Route::resource('languages', LanguageController::class);
 });
 
 // GRUPA ROUTÓW UŻYWANA DO ZATRZYMANIA UŻYTKOWNIKA NA FORMULARZU POROZUMIENIA.

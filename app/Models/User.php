@@ -67,9 +67,17 @@ class User extends Authenticatable
     {
         return $this->hasOne(Agreement::class);
     }
-  
-    public function pointSlots() 
+
+    public function pointSlots()
     {
         return $this->hasMany(PointSlot::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class);
     }
 }
