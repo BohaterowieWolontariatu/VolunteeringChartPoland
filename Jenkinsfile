@@ -45,39 +45,9 @@ pipeline {
           sh """ echo DB_HOST=$MYSQL_HOST >> .env """
           sh """ echo DB_USERNAME=$MYSQL_CREDS_USR >> .env """
           sh """ echo DB_PASSWORD=$MYSQL_CREDS_PSW >> .env """
+          sh """ echo DB_DATABASE=$DATABASE_NAME >> .env """
 
-          script {
-            if (params.CUSTOM_DATABASE_NAME == '') {
-              echo "Database name: ${BUILD_DATABASE_NAME}"
-              sh 'echo  DB_DATABASE="${BUILD_DATABASE_NAME}" >> .env'
-            }
-            else{
-              echo "Database name: ${params.CUSTOM_DATABASE_NAME}"
-              sh '''echo  DB_DATABASE=''' + params.CUSTOM_DATABASE_NAME +''' >> .env '''
-            }
-          }
           sh 'php artisan key:generate'
-        }
-      }
-
-      stage('Prepare to Tests') {
-        parallel {
-          stage('Database') {
-            steps {
-              echo "Prepare to create build database: ${BUILD_DATABASE_NAME}"
-              script {
-                if (params.CUSTOM_DATABASE_NAME == '') {
-                  echo "Database name: ${BUILD_DATABASE_NAME}"
-                  sh 'mysql -h "$MYSQL_HOST" -u "$MYSQL_CREDS_USR" --password="$MYSQL_CREDS_PSW" -e "CREATE DATABASE IF NOT EXISTS ${BUILD_DATABASE_NAME} DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;" '
-                }
-                else{
-                  echo "Database name: ${params.CUSTOM_DATABASE_NAME}"
-                  sh '''mysql -h "$MYSQL_HOST" -u "$MYSQL_CREDS_USR" --password="$MYSQL_CREDS_PSW" -e "CREATE DATABASE IF NOT EXISTS ''' + params.CUSTOM_DATABASE_NAME +''' DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;" '''
-                }
-              }
-            }
-          }
-
         }
       }
 
@@ -155,24 +125,6 @@ pipeline {
         }
       }
 
-      stage('Post Tests Cleanup') {
-        steps {
-          script {
-            if (params.DROP_BUILD_DB){
-              if (params.CUSTOM_DATABASE_NAME == '') {
-                echo "Database to be removed: ${BUILD_DATABASE_NAME}"
-                sh 'mysql -h "$MYSQL_HOST" -u "$MYSQL_CREDS_USR" --password="$MYSQL_CREDS_PSW" -e "DROP DATABASE IF EXISTS ${BUILD_DATABASE_NAME} ;" '
-              }
-              else{
-                echo "Database to be removed: ${params.CUSTOM_DATABASE_NAME}"
-                sh '''mysql -h "$MYSQL_HOST" -u "$MYSQL_CREDS_USR" --password="$MYSQL_CREDS_PSW" -e "DROP DATABASE IF EXISTS ''' + params.CUSTOM_DATABASE_NAME +''' ;" '''
-              }
-            }
-          }
-
-        }
-      }
-
     }
     environment {
       BUILD_DIR = 'build'
@@ -180,11 +132,10 @@ pipeline {
       PROJECT_DIR = '/var/www/brokeria-ecosystem'
       PHPUNIT = './vendor/bin/phpunit'
       JNK_PATH = "${env.WORKSPACE}/app"
-      MYSQL_HOST = credentials('mysql-host')
-      MYSQL_CREDS = credentials('mysql-local')
+      MYSQL_HOST = "127.0.0.1"
+      MYSQL_CREDS = credentials('mysql-volunteering_chart_poland')
       BASE_NAME = """${sh(returnStdout: true,script: "echo $JOB_NAME | grep -o '^[^(\\/|\\)]*'").trim()}"""
-      DATABASE_NAME = """${sh(returnStdout: true,script: "echo $JOB_NAME | grep -o '^[^(\\/|\\)]*' | sed -e 's/-/_/g' -e 's/ /_/g'").trim()}"""
-      BUILD_DATABASE_NAME = """${sh(returnStdout: true,script: " echo \$(echo 'jenkins_')\$(echo $JOB_NAME | grep -o '^[^(\\/|\\)]*' | sed -e 's/-/_/g' -e 's/ /_/g')\$(echo _${BUILD_ID}) ").trim()}"""
+      DATABASE_NAME = 'volunteering_chart_poland'
     }
     post {
       always {
