@@ -20,8 +20,8 @@ class CreateShiftsTable extends Migration
 
             $table->string('name');
             $table->smallInteger('capacity');
-            $table->smallInteger('start_time');
-            $table->smallInteger('end_time');
+            $table->char('start_time', 5);
+            $table->char('end_time', 5);
 
             $table->timestamps();
         });
