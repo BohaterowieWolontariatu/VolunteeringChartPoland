@@ -36,4 +36,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/', [AgreementController::class, 'create'])->name('agreement.create');
     });
     Route::resource('points', PointController::class);
+    Route::resource('languages', PointController::class);
+
 });
