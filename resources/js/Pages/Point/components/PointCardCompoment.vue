@@ -1,10 +1,10 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
 
     <div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
-      <h2 class="mt-4 font-bold text-xl">Stadion</h2>
+      <h2 class="mt-4 font-bold text-xl">{{point.name}}</h2>
 
       <div class="grid grid-cols-2">
+
         <div class="float-left">
           <h3>Potrzeba wolontariuszy</h3>
           <div>
@@ -13,7 +13,10 @@
             <div>Pojutrze: nieczynne</div>
           </div>
         </div>
+
         <div class="float-right">
+          <p class="mb-1">{{point.lead}}</p>
+
           <h1>Koordynatorzy</h1>
           <div class="mb-4">
             <div>Jacek Jackowski</div>
@@ -38,11 +41,10 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
-import AppLayout from '@/Layouts/AppLayout'
+import AppLayout from '@/Layouts/AppLayout';
 // import Welcome from '@/Jetstream/Welcome'
 export default {
   name: "PointCardComponent",
@@ -83,10 +85,13 @@ export default {
       this.loader = null
     },
   },
-  point: {
-    type: Object,
-    required: true,
-  }
+  props: {
+    point: {
+      type: Object,
+      required: true,
+    },
+
+  },
 }
 </script>
 <style>
