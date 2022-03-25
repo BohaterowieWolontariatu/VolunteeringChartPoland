@@ -23,6 +23,11 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->timestamps();
+            $table->string('surname')->after('name');
+            $table->string('pesel')->after('surname');
+            $table->boolean('is_active')->after('email_verified_at')->default(1);
+            $table->boolean('has_agreement_signed')->after('is_active');
+            $table->string('phone')->after('has_agreement_signed');
         });
     }
 
