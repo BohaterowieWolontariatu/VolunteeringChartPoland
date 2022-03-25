@@ -30,10 +30,12 @@ class StoreAgreementRequest extends FormRequest
             'agree_to_covid_recommendations' => [
                 'required',
                 'boolean',
+                'accepted',
             ],
             'data_is_valid' => [
                 'required',
                 'boolean',
+                'accepted',
             ],
             'agree_to_free_process_image' => [
                 'required',

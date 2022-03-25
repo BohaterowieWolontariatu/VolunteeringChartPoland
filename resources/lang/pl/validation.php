@@ -147,5 +147,11 @@ return [
     */
 
     'attributes' => [
+        'address' => 'Adres zamieszkania',
+        'sign_date' => 'Zawarte w dniu',
+        'is_adult' => 'Jestem osobą pełnoletnią',
+        'agree_to_covid_recommendations' => 'Zgoda Covid',
+        'data_is_valid' => 'Prawdziwe informacje',
+        'agree_to_free_process_image' => 'Zgoda na udostępnianie wizerunku',
     ],
 ];

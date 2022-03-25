@@ -50,8 +50,9 @@
                 <p class="font-bold text-lg">
                   {{$trans('translations.agreement.concluded_on')}}
                 </p>
-                <jet-input id="concluded_on" type="date" class="mt-1 block w-full" v-model="form.sign_date" required
+                <jet-input id="concluded_on" type="date" class="mt-1 block w-full" v-model="form.sign_date"
                            autocomplete="current-concluded_on"/>
+                <input-error :message="this.$page.props.errors.sign_date"></input-error>
               </div>
               <br>
               <p class="font-bold text-lg">
@@ -76,12 +77,13 @@
                 <br>
                 <input id="is_adult_no" type="radio" value="0" v-model="form.is_adult">
                 <label for="is_adult_no">NIE</label>
+                <input-error :message="this.$page.props.errors.is_adult"></input-error>
               </div>
               <div class="mt-8">
                 <jet-label :value="$trans('translations.agreement.address')"/>
                 <textarea class="w-full" v-model="form.address"></textarea>
               </div>
-              <!--              <input-error :message="this.$page.props.errors.pesel"></input-error>-->
+              <input-error :message="this.$page.props.errors.agree_to_covid_recommendations"></input-error>
 
               <div class="agreement">
                 <p class="font-bold text-lg pt-2">
@@ -111,11 +113,13 @@
                 <jet-label :value="$trans('translations.agreement.covid_principles')"/>
                 <input id="agree_to_covid_recommendations" type="radio" value="1" v-model="form.agree_to_covid_recommendations">
                 <label for="agree_to_covid_recommendations">TAK</label>
+                <input-error :message="this.$page.props.errors.agree_to_covid_recommendations"></input-error>
               </div>
               <div class="mt-8">
                 <jet-label :value="$trans('translations.agreement.true_informations')"/>
                 <input id="data_is_valid" type="radio" value="1" v-model="form.data_is_valid">
                 <label for="data_is_valid">TAK</label>
+                <input-error :message="this.$page.props.errors.data_is_valid"></input-error>
               </div>
               <p class="font-bold text-lg pt-2">
                 {{$trans('translations.agreement.informations_from_administrator')}}
@@ -127,6 +131,7 @@
                 <br>
                 <input id="agree_to_free_process_image_no" type="radio" value="0" v-model="form.agree_to_free_process_image">
                 <label for="agree_to_free_process_image_no">NIE</label>
+                <input-error :message="this.$page.props.errors.agree_to_free_process_image"></input-error>
               </div>
               <div class="mt-8">
                 <p class="text-lg">{{$trans('translations.agreement.facebook_key')}}</p>
@@ -153,6 +158,7 @@ import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
 import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
 import JetButton from '@/Jetstream/Button'
 import JetInput from '@/Jetstream/Input'
+import InputError from '@/Jetstream/InputError'
 import JetCheckbox from '@/Jetstream/Checkbox'
 import JetLabel from '@/Jetstream/Label'
 import JetValidationErrors from '@/Jetstream/ValidationErrors'
@@ -164,6 +170,7 @@ export default {
     JetAuthenticationCardLogo,
     JetButton,
     JetInput,
+    InputError,
     JetCheckbox,
     JetLabel,
     JetValidationErrors,
