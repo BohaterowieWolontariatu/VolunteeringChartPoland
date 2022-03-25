@@ -45,6 +45,7 @@ pipeline {
           sh """ echo DB_HOST=$MYSQL_HOST >> .env """
           sh """ echo DB_USERNAME=$MYSQL_CREDS_USR >> .env """
           sh """ echo DB_PASSWORD=$MYSQL_CREDS_PSW >> .env """
+
           script {
             if (params.CUSTOM_DATABASE_NAME == '') {
               echo "Database name: ${BUILD_DATABASE_NAME}"
@@ -55,7 +56,7 @@ pipeline {
               sh '''echo  DB_DATABASE=''' + params.CUSTOM_DATABASE_NAME +''' >> .env '''
             }
           }
-
+          sh 'php artisan key:generate'
         }
       }
 
@@ -104,10 +105,7 @@ pipeline {
               stage('SSH to the Remote Target') {
                 echo "Prepare App on the Remote Target"
                 sshCommand remote: remote, command: """
-                cd $PROJECT_DIR/$BASE_NAME/$BASE_NAME-$BUILD_NUMBER && php artisan key:generate
-                """
-                sshCommand remote: remote, command: """
-                cd $PROJECT_DIR/$BASE_NAME/$BASE_NAME-$BUILD_NUMBER && php artisan migrate
+                cd $PROJECT_DIR/$BASE_NAME/$BASE_NAME-$BUILD_NUMBER && php artisan migrate --force
                 """
                 sshCommand remote: remote, command: """
                 sudo chown -R jenkins:www-data $PROJECT_DIR/$BASE_NAME/$BASE_NAME-$BUILD_NUMBER/

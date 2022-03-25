@@ -4,7 +4,6 @@
 - composer.lock
 - .deployment_exclude
 - .editorconfig
-- .env
 - .env.example
 - .env.deploy
 - generatedJUnitFiles/
