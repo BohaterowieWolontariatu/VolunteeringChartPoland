@@ -16,7 +16,7 @@ class AlterUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('surname')->after('name');
             $table->string('pesel')->after('surname');
-            $table->boolean('is_active')->after('email_verified_at')->nullable();
+            $table->boolean('is_active')->after('email_verified_at')->default(1);
             $table->boolean('has_agreement_signed')->after('is_active');
             $table->string('phone')->after('has_agreement_signed');
         });
