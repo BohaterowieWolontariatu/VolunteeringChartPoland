@@ -1,43 +1,11 @@
 <template>
-<!--    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">-->
-<!--      <div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">-->
-<!--        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 mt-4"-->
-<!--             v-for="n in 3"-->
-<!--             :key="n"-->
-<!--        >-->
-<!--          <div class="overflow-hidden shadow-md">-->
-<!--            <div class="px-6 py-4 bg-white border-b border-gray-200 font-bold uppercase">-->
-<!--              Stadion-->
-<!--            </div>-->
-<!--            <div class="p-6 bg-white border-b border-gray-200">-->
-
-<!--            </div>-->
-<!--            <div class="p-6 text-grey-darker text-justify flex flex-row justify-end border-t">-->
-<!--              <div class="p-6 bg-white border-gray-200 text-right">-->
-<!--                <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">-->
-<!--                  Zobacz-->
-<!--                </button>-->
-<!--              </div>-->
-<!--              <div class="p-6 bg-white border-gray-200 text-left">-->
-<!--                <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300" @click="show = !show">-->
-<!--                    Pokaż adres-->
-<!--                </button>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div v-if="show">-->
-<!--              super fajnie to zrobiłeś-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
 
     <div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg" v-for="n in 4">
       <h2 class="mt-4 font-bold text-xl">Stadion</h2>
 
       <div class="grid grid-cols-2">
-        <div>
+        <div class="float-left">
           <h3>Potrzeba wolontariuszy</h3>
           <div>
             <div>Dziś: 5</div>
@@ -45,7 +13,7 @@
             <div>Pojutrze: nieczynne</div>
           </div>
         </div>
-        <div>
+        <div class="float-right">
           <h1>Koordynatorzy</h1>
           <div class="mb-4">
             <div>Jacek Jackowski</div>
@@ -55,6 +23,18 @@
             <div>Karolina Wiśniewska</div>
             <div>Kom. +48 123 123 123</div>
           </div>
+        </div>
+      </div>
+      <div class="p-2 text-grey-darker text-justify flex flex-row justify-end">
+        <div class="p-2 bg-white border-gray-200">
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
+            Zobacz
+          </button>
+        </div>
+        <div class="p-2 bg-white border-gray-200">
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300" @click="show = !show">
+            Pokaż adres
+          </button>
         </div>
       </div>
     </div>
