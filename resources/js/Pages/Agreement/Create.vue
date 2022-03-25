@@ -210,9 +210,5 @@ export default {
       this.form.post(this.route('agreement.store'))
     }
   },
-
-  mounted() {
-    console.log(this.$page);
-  }
 }
 </script>

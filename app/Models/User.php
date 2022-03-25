@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -62,8 +63,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-
-    public function pointSlots() {
+    public function agreement(): HasOne
+    {
+        return $this->hasOne(Agreement::class);
+    }
+  
+    public function pointSlots() 
+    {
         return $this->hasMany(PointSlot::class);
     }
 }
