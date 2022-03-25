@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Point\StorePointRequest;
 use App\Http\Requests\Point\UpdatePointRequest;
 use App\Models\Point;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -13,17 +14,19 @@ class PointController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function index()
     {
         $points = Point::query()
             ->orderBy('name')
+            ->with('shifts')
             ->paginate();
 
-//        return Inertia::render('Points/Index', [
-//           'points' => $points
-//        ]);
+
+        return Inertia::render('Point/Index', [
+           'points' => $points
+        ]);
     }
 
     /**
@@ -40,7 +43,7 @@ class PointController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\Point\StorePointRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StorePointRequest $request)
     {
@@ -57,7 +60,7 @@ class PointController extends Controller
      */
     public function show(Point $point)
     {
-        return Inertia::render('Points/Show', [
+        return Inertia::render('Point/Show', [
            'point' => $point
         ]);
     }
@@ -81,7 +84,7 @@ class PointController extends Controller
      * @param \App\Models\Point $point
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdatePointRequest $request, Point $point): \Illuminate\Http\RedirectResponse
+    public function update(UpdatePointRequest $request, Point $point): RedirectResponse
     {
         $point->update($request->validated());
 
@@ -95,7 +98,7 @@ class PointController extends Controller
      * @param \App\Models\Point $point
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Point $point): \Illuminate\Http\RedirectResponse
+    public function destroy(Point $point): RedirectResponse
     {
         $point->delete();
 
