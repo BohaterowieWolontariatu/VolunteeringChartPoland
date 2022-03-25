@@ -4,6 +4,7 @@ use App\Http\Controllers\PointController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\AgreementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::group(['prefix' => 'agreement'], function () {
+        Route::get('/', [AgreementController::class, 'create'])->name('agreement.create');
+    });
     Route::resource('points', PointController::class);
 });
