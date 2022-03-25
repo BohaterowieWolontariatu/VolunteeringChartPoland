@@ -10,6 +10,14 @@ Vue.mixin({ methods: { route } });
 Vue.use(InertiaPlugin);
 Vue.use(PortalVue);
 
+import {trans} from "matice"
+
+Vue.mixin({
+    methods: {
+        $trans: trans,
+    },
+})
+
 const app = document.getElementById('app');
 
 new Vue({
