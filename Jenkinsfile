@@ -106,9 +106,6 @@ pipeline {
                 cd $PROJECT_DIR/$BASE_NAME/$BASE_NAME-$BUILD_NUMBER && composer install
                 """
                 sshCommand remote: remote, command: """
-                cd $PROJECT_DIR/$BASE_NAME/$BASE_NAME-$BUILD_NUMBER && composer update
-                """
-                sshCommand remote: remote, command: """
                 cd $PROJECT_DIR/$BASE_NAME/$BASE_NAME-$BUILD_NUMBER && php artisan key:generate
                 """
                 sshCommand remote: remote, command: """
