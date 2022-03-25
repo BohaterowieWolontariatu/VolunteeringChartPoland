@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PointController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,8 +30,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::group(['prefix' => 'agreement'], function () {
         Route::get('/', [AgreementController::class, 'create'])->name('agreement.create');
     });
+    Route::resource('points', PointController::class);
 });
