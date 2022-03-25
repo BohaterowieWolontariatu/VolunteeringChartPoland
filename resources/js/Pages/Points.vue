@@ -28,12 +28,12 @@
       <div class="p-2 text-grey-darker text-justify flex flex-row justify-end">
         <div class="p-2 bg-white border-gray-200">
           <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
-            Zobacz
+            Przejdź do placówki
           </button>
         </div>
         <div class="p-2 bg-white border-gray-200">
           <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300" @click="show = !show">
-            Pokaż adres
+            Informacje
           </button>
         </div>
       </div>

@@ -1,10 +1,11 @@
 
 <template>
     <app-layout>
+      <div class="container mx-auto">
+        <Points />
 
-      <Points />
-
-      <Schedule />
+        <Schedule />
+      </div>
 
     </app-layout>
 </template>

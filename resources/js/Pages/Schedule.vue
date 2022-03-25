@@ -1,12 +1,10 @@
-
 <template>
 
-  <div class="container mx-auto">
+  <div>
 
-  <div class="text-center mt-5">
-    <h1>Stadion</h1>
-  </div>
-
+    <div class="text-center">
+      <p class="text-6xl">Stadion</p>
+    </div>
 
     <div>
       <div
@@ -16,10 +14,10 @@
           <div>
             <v-btn
               class="ma-2"
-              text
-              icon
-              x-large
               color="primary"
+              icon
+              text
+              x-large
             >
               <v-icon>mdi-arrow-left-bold</v-icon>
             </v-btn>
@@ -29,9 +27,9 @@
               v-model="menu2"
               :close-on-content-click="false"
               :nudge-right="40"
-              transition="scale-transition"
-              offset-y
               min-width="auto"
+              offset-y
+              transition="scale-transition"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
@@ -52,10 +50,10 @@
           <div>
             <v-btn
               class="ma-2"
-              text
-              icon
-              x-large
               color="primary"
+              icon
+              text
+              x-large
             >
               <v-icon>mdi-arrow-right-bold</v-icon>
             </v-btn>
@@ -67,30 +65,33 @@
     </div>
 
 
-
-
-    <div class="md:flex space-x-4 w-full">
+    <div class="md:flex md:space-x-4 w-full">
       <div
         v-for="(i,key) in [{
                             title: 'Poniedziałek',
+                            color: 'bg-green-700',
                             description: 'Potrzeba osób: 13'
                         },{
                             title: 'Wtorek',
+                            color: 'bg-green-600',
                             description: 'Potrzeba osób: 2'
                         },{
                             title: 'Środa',
+                            color: 'bg-green-500',
                             description: 'Potrzeba osób: 2'
                         }]"
         :key="key+334"
         class="text-center sm:w-full md:w-1/2"
       >
-        <div class="py-5 ukraine-blue text-white">
-          <h3>
+        <div class="py-2 text-white" :class="i.color">
+          <p class="text-3xl">
             {{ i.title }}
-          </h3>
-          <h2 class="font-weight-bold">
+          </p>
+        </div>
+        <div class="py-2 ukraine-blue text-white">
+          <p class="font-bold text-xl">
             {{ i.description }}
-          </h2>
+          </p>
         </div>
 
         <div>
@@ -106,49 +107,46 @@
             :key="jkey+345"
             class="w-full"
           >
-            <div class="py-5 ukraine-yellow">
-              <h4>
-                {{j.title}}
-              </h4>
+            <div class="py-2 ukraine-yellow">
+              <p class="font-bold">
+                {{ j.title }}
+              </p>
             </div>
 
-            <div class="mt-3">
+            <div>
               <div
-                class="w-full"
                 v-for="(k,kkey) in 4"
                 :key="kkey"
+                class="bg-white px-4 flex items-center mb-2 shadow-md"
+                style="min-height:50px"
               >
-                <div class="bg-white p-4 flex items-center" style="min-height:95px">
+<!--                <div class="" >-->
                   <div v-if="k <= 2" class="flex w-full items-center justify-between">
                     <div class="flex items-center">
-                      <v-avatar>
-                        <img
-                          src="https://cdn.vuetifyjs.com/images/john.jpg"
-                          alt="John"
-                        >
-                      </v-avatar>
-                      <div class="ml-3" style="font-size:24px">{{ k % 2 ? 'Robert' : 'Dawid' }}</div>
+                      <div class="flex relative w-9 h-9 bg-green-500 justify-center items-center m-1 mr-2 text-xl rounded-full text-white">{{ k % 2 ? 'R' : 'D' }}</div>
+                      <div class="ml-3" style="font-size:22px">{{ k % 2 ? 'Robert' : 'Dawid' }}</div>
                     </div>
                     <div>
                       PL / EN
                     </div>
                   </div>
                   <div v-else class="w-full">
-<!--                    <div class="w-full">-->
-                      <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
-                        Zapisz się
-                      </button>
-                      <!--                                                    <v-btn-->
-                      <!--                                                        depressed-->
-                      <!--                                                        color="success"-->
-                      <!--                                                        large-->
-                      <!--                                                    >-->
-                      <!--                                                        Zapisz się-->
-                      <!--                                                    </v-btn>-->
-<!--                    </div>-->
+                    <!--                    <div class="w-full">-->
+                    <button
+                      class="w-full bg-blue-500 text-white px-4 py-1 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
+                      Zapisz się
+                    </button>
+                    <!--                                                    <v-btn-->
+                    <!--                                                        depressed-->
+                    <!--                                                        color="success"-->
+                    <!--                                                        large-->
+                    <!--                                                    >-->
+                    <!--                                                        Zapisz się-->
+                    <!--                                                    </v-btn>-->
+                    <!--                    </div>-->
                   </div>
 
-                </div>
+<!--                </div>-->
               </div>
 
               <div
@@ -156,18 +154,19 @@
               >
                 <div class="p-4" style="min-height:95px">
                   <div class="flex items-center justify-center">
-<!--                    <div class=">-->
-                      <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
-                        Zapisz się na listę rezerwową
-                      </button>
-                      <!--                                                    <v-btn-->
-                      <!--                                                        depressed-->
-                      <!--                                                        color="success"-->
-                      <!--                                                        large-->
-                      <!--                                                    >-->
-                      <!--                                                        Zapisz się-->
-                      <!--                                                    </v-btn>-->
-<!--                    </div>-->
+                    <!--                    <div class=">-->
+                    <button
+                      class="w-full bg-gray-600 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
+                      Zapisz się na listę rezerwową
+                    </button>
+                    <!--                                                    <v-btn-->
+                    <!--                                                        depressed-->
+                    <!--                                                        color="success"-->
+                    <!--                                                        large-->
+                    <!--                                                    >-->
+                    <!--                                                        Zapisz się-->
+                    <!--                                                    </v-btn>-->
+                    <!--                    </div>-->
                   </div>
 
                 </div>
@@ -213,7 +212,7 @@ export default {
     ],
   }),
   watch: {
-    loader () {
+    loader() {
       const l = this.loader
       this[l] = !this[l]
 
@@ -226,11 +225,13 @@ export default {
 </script>
 <style>
 .ukraine-blue {
-  background-color:#005bbc
+  background-color: #005bbc
 }
+
 .ukraine-yellow {
-  background-color:#ffd600
+  background-color: #ffd600
 }
+
 @-moz-keyframes loader {
   from {
     transform: rotate(0);
@@ -239,6 +240,7 @@ export default {
     transform: rotate(360deg);
   }
 }
+
 @-webkit-keyframes loader {
   from {
     transform: rotate(0);
@@ -247,6 +249,7 @@ export default {
     transform: rotate(360deg);
   }
 }
+
 @-o-keyframes loader {
   from {
     transform: rotate(0);
@@ -255,6 +258,7 @@ export default {
     transform: rotate(360deg);
   }
 }
+
 @keyframes loader {
   from {
     transform: rotate(0);

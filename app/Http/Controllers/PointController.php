@@ -6,6 +6,7 @@ use App\Http\Requests\Point\StorePointRequest;
 use App\Http\Requests\Point\UpdatePointRequest;
 use App\Models\Point;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class PointController extends Controller
 {
@@ -52,11 +53,13 @@ class PointController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Point  $point
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function show(Point $point)
     {
-        //
+        return Inertia::render('Points/Show', [
+           'point' => $point
+        ]);
     }
 
     /**
