@@ -1,20 +1,16 @@
 
 <template>
-  <v-container>
-    <v-row>
-      <v-col
-        sm="12"
-      >
-        <div class="text-center mt-15">
-          <h1>Stadion</h1>
-        </div>
-      </v-col>
-    </v-row>
 
-    <v-row>
-      <v-col
-        cols="12"
-        sm="12"
+  <div class="container mx-auto">
+
+  <div class="text-center mt-5">
+    <h1>Stadion</h1>
+  </div>
+
+
+    <div>
+      <div
+        class="w-full"
       >
         <div class="flex justify-between items-center">
           <div>
@@ -67,22 +63,26 @@
 
 
         </div>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
 
-    <v-row>
-      <v-col
+
+
+
+    <div class="md:flex space-x-4 w-full">
+      <div
         v-for="(i,key) in [{
                             title: 'Poniedziałek',
                             description: 'Potrzeba osób: 13'
                         },{
                             title: 'Wtorek',
                             description: 'Potrzeba osób: 2'
+                        },{
+                            title: 'Środa',
+                            description: 'Potrzeba osób: 2'
                         }]"
         :key="key+334"
-        md="6"
-        sm="12"
-        class="text-center"
+        class="text-center sm:w-full md:w-1/2"
       >
         <div class="py-5 ukraine-blue text-white">
           <h3>
@@ -93,8 +93,8 @@
           </h2>
         </div>
 
-        <v-row>
-          <v-col
+        <div>
+          <div
             v-for="(j, jkey) in [
                                     {
                                         title: 'Zmiana 1 w godzinach 15:00-18:00',
@@ -104,7 +104,7 @@
                                     }
                                 ]"
             :key="jkey+345"
-            sm="12"
+            class="w-full"
           >
             <div class="py-5 ukraine-yellow">
               <h4>
@@ -112,15 +112,14 @@
               </h4>
             </div>
 
-            <v-row class="mt-3">
-              <v-col
-                class="pt-0"
+            <div class="mt-3">
+              <div
+                class="w-full"
                 v-for="(k,kkey) in 4"
                 :key="kkey"
-                sm="12"
               >
-                <div class="white p-4" style="min-height:95px">
-                  <div v-if="k <= 2" class="flex items-center justify-between">
+                <div class="bg-white p-4 flex items-center" style="min-height:95px">
+                  <div v-if="k <= 2" class="flex w-full items-center justify-between">
                     <div class="flex items-center">
                       <v-avatar>
                         <img
@@ -134,11 +133,11 @@
                       PL / EN
                     </div>
                   </div>
-                  <div v-else class="flex items-center justify-content-center">
-                    <div>
-                      <jet-button>
+                  <div v-else class="w-full">
+<!--                    <div class="w-full">-->
+                      <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
                         Zapisz się
-                      </jet-button>
+                      </button>
                       <!--                                                    <v-btn-->
                       <!--                                                        depressed-->
                       <!--                                                        color="success"-->
@@ -146,30 +145,21 @@
                       <!--                                                    >-->
                       <!--                                                        Zapisz się-->
                       <!--                                                    </v-btn>-->
-                    </div>
+<!--                    </div>-->
                   </div>
 
                 </div>
-              </v-col>
+              </div>
 
-              <v-col
-                class="pt-0"
-                sm="12"
+              <div
+                class="pt-0 w-full"
               >
                 <div class="p-4" style="min-height:95px">
-                  <div class="flex items-center justify-content-center">
-                    <div>
-                      <v-btn
-                        large
-                        depressed
-                        :loading="loading"
-                        :disabled="loading"
-                        class="text-white"
-                        color="#005bbc"
-                        @click="loader = 'loading'"
-                      >
+                  <div class="flex items-center justify-center">
+<!--                    <div class=">-->
+                      <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
                         Zapisz się na listę rezerwową
-                      </v-btn>
+                      </button>
                       <!--                                                    <v-btn-->
                       <!--                                                        depressed-->
                       <!--                                                        color="success"-->
@@ -177,18 +167,18 @@
                       <!--                                                    >-->
                       <!--                                                        Zapisz się-->
                       <!--                                                    </v-btn>-->
-                    </div>
+<!--                    </div>-->
                   </div>
 
                 </div>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-col>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    </v-row>
-  </v-container>
+    </div>
+  </div>
 
 
 </template>
