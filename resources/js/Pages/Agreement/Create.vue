@@ -38,29 +38,63 @@
                   e-mail: ukraina@wolontariatgdansk.pl<br>
                 </p>
               </div>
+              <div class="h-0.5 bg-gray-200 w-full my-5"></div>
+              <p class="font-bold text-xl text-center">
+                Porozumienie
+              </p>
               <div>
-                <div class="h-0.5 bg-gray-200 w-full my-5"> </div>
-                <p class="font-bold text-2xl text-center">
-                  Porozumienie
+                <jet-label for="email" :value="$trans('translations.agreement.your_adress_email')"/>
+                <jet-input class="mt-1 block w-full" :value="user.email" disabled/>
+              </div>
+              <div class="mt-8">
+                <p class="font-bold text-lg">
+                  {{$trans('translations.agreement.concluded_on')}}
                 </p>
-                <div>
-                  <jet-label for="email" :value="$trans('translations.agreement.your_adress_email')"/>
-                  <jet-input class="mt-1 block w-full" :value="user.email" disabled />
-                  <p></p>
-                </div>
+                <jet-input id="concluded_on" type="date" class="mt-1 block w-full" v-model="form.sign_date" required
+                           autocomplete="current-concluded_on"/>
+              </div>
+              <br>
+              <p class="font-bold text-lg">
+                {{$trans('translations.agreement.concluded_with_voluntary')}}
+              </p>
+              <br>
+              <p class="font-bold text-lg">
+                {{$trans('translations.agreement.concluded_between')}}
+              </p>
+              <div class="mt-8">
+                <jet-label :value="$trans('translations.agreement.name_and_surname')"/>
+                <jet-input class="mt-1 block w-full" :value="user.name + ' ' + user.surname" disabled/>
               </div>
               <div class="mt-8">
-                <jet-label for="surname" value="Nazwisko"/>
-                <jet-input id="surname" type="surname" class="mt-1 block w-full" v-model="form.surname" required
-                           autocomplete="current-surname"/>
+                <jet-label value="PESEL"/>
+                <jet-input class="mt-1 block w-full" :value="user.pesel" disabled/>
               </div>
-
               <div class="mt-8">
-                <jet-label for="pesel" value="PESEL"/>
-                <jet-input id="pesel" type="pesel" class="mt-1 block w-full" v-model="form.pesel" required autocomplete="current-pesel"/>
+                <jet-label :value="$trans('translations.agreement.are_you_full_age')"/>
+                <input id="is_adult_yes" type="radio" value="1" v-model="form.is_adult">
+                <label for="is_adult_yes">TAK</label>
+                <br>
+                <input id="is_adult_no" type="radio" value="0" v-model="form.is_adult">
+                <label for="is_adult_no">NIE</label>
+              </div>
+              <div class="mt-8">
+                <jet-label :value="$trans('translations.agreement.address')"/>
+                <textarea class="w-full" v-model="form.address"></textarea>
               </div>
               <!--              <input-error :message="this.$page.props.errors.pesel"></input-error>-->
 
+              <div class="agreement">
+                <p class="font-bold text-lg pt-2">
+                  {{$trans('translations.agreement.concluded_with_participant')}}
+                </p>
+                <p class="font-bold text-lg pt-2">
+                  {{$trans('translations.agreement.according_to')}}:
+                </p>
+                <p class="font-bold text-lg pt-2">
+                  {{$trans('translations.agreement.art42')}}
+                </p>
+
+              </div>
               <!-- submit -->
               <div class="flex items-center justify-center mt-12">
                 <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
@@ -108,7 +142,9 @@ export default {
       form: this.$inertia.form({
         email: '',
         password: '',
-        remember: false
+        remember: false,
+        sign_date: '',
+        is_adult: 0,
       })
     }
   },
