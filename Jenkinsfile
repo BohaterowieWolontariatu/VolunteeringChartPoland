@@ -33,6 +33,7 @@ pipeline {
           preSteps()
           echo "Syntax Checking"
           sh """find ${SOURCE_DIR} -type f -name '*.php' -exec php -l {} \\; | (! grep -v 'No syntax errors detected' )"""
+          sh 'composer install --no-suggest --optimize-autoloader --no-ansi --no-interaction'
         }
       }
 
@@ -102,9 +103,6 @@ pipeline {
               remote.allowAnyHosts = true
               stage('SSH to the Remote Target') {
                 echo "Prepare App on the Remote Target"
-                 sshCommand remote: remote, command: """
-                cd $PROJECT_DIR/$BASE_NAME/$BASE_NAME-$BUILD_NUMBER && composer install
-                """
                 sshCommand remote: remote, command: """
                 cd $PROJECT_DIR/$BASE_NAME/$BASE_NAME-$BUILD_NUMBER && php artisan key:generate
                 """
