@@ -10,6 +10,7 @@ class Agreement extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'address',
         'sign_date',
         'is_adult',

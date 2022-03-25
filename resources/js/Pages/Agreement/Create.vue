@@ -93,12 +93,50 @@
                 <p class="font-bold text-lg pt-2">
                   {{$trans('translations.agreement.art42')}}
                 </p>
-
+                <ol class="font-bold text-lg pt-2 px-4 list-decimal">
+                  <li> {{$trans('translations.agreement.info_list_1')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_2')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_3')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_4')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_5')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_6')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_7')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_8')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_9')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_10')}}</li>
+                  <li> {{$trans('translations.agreement.info_list_11')}}</li>
+                </ol>
+              </div>
+              <div class="mt-8">
+                <jet-label :value="$trans('translations.agreement.covid_principles')"/>
+                <input id="agree_to_covid_recommendations" type="radio" value="1" v-model="form.agree_to_covid_recommendations">
+                <label for="agree_to_covid_recommendations">TAK</label>
+              </div>
+              <div class="mt-8">
+                <jet-label :value="$trans('translations.agreement.true_informations')"/>
+                <input id="data_is_valid" type="radio" value="1" v-model="form.data_is_valid">
+                <label for="data_is_valid">TAK</label>
+              </div>
+              <p class="font-bold text-lg pt-2">
+                {{$trans('translations.agreement.informations_from_administrator')}}
+              </p>
+              <div class="mt-8">
+                <jet-label :value="$trans('translations.agreement.agree_to_free_process_image')"/>
+                <input id="agree_to_free_process_image_yes" type="radio" value="1" v-model="form.agree_to_free_process_image">
+                <label for="agree_to_free_process_image_yes">TAK</label>
+                <br>
+                <input id="agree_to_free_process_image_no" type="radio" value="0" v-model="form.agree_to_free_process_image">
+                <label for="agree_to_free_process_image_no">NIE</label>
+              </div>
+              <div class="mt-8">
+                <p class="text-lg">{{$trans('translations.agreement.facebook_key')}}</p>
+                <img src="/img/wolna_ukraina.png" class="mr-4" alt="Wolna ukraina obraz">
               </div>
               <!-- submit -->
               <div class="flex items-center justify-center mt-12">
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                  Login
+                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }">
+<!--                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">-->
+                  Submit
                 </jet-button>
               </div>
             </form>
@@ -144,7 +182,11 @@ export default {
         password: '',
         remember: false,
         sign_date: '',
+        address: '',
         is_adult: 0,
+        agree_to_covid_recommendations: 0,
+        data_is_valid: 0,
+        agree_to_free_process_image: 0,
       })
     }
   },
@@ -157,14 +199,8 @@ export default {
 
   methods: {
     submit() {
-      this.form
-          .transform(data => ({
-            ...data,
-            remember: this.form.remember ? 'on' : ''
-          }))
-          .post(this.route('login'), {
-            onFinish: () => this.form.reset('password'),
-          })
+      console.log(this.form);
+      this.form.post(this.route('agreement.store'))
     }
   },
 
