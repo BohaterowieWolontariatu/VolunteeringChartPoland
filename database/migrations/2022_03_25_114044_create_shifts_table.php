@@ -16,7 +16,7 @@ class CreateShiftsTable extends Migration
     {
         Schema::create('shifts', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Point::class)->cascadeOnUpdate();
+            $table->foreignIdFor(Point::class)->constrained();
 
             $table->string('name');
             $table->smallInteger('capacity');
