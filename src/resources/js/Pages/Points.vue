@@ -1,116 +1,64 @@
-
 <template>
-<!--  <v-app id="inspire">-->
-  <v-row>
-    <template v-for="n in 1">
-      <v-col
-        :key="n"
-        class="mt-2"
-        cols="12"
-      >
-        <h2>Gdańsk</h2>
-      </v-col>
+<!--    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">-->
+<!--      <div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">-->
+<!--        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 mt-4"-->
+<!--             v-for="n in 3"-->
+<!--             :key="n"-->
+<!--        >-->
+<!--          <div class="overflow-hidden shadow-md">-->
+<!--            <div class="px-6 py-4 bg-white border-b border-gray-200 font-bold uppercase">-->
+<!--              Stadion-->
+<!--            </div>-->
+<!--            <div class="p-6 bg-white border-b border-gray-200">-->
 
-      <v-col
-        v-for="(j, key) in 6"
-        :key="key+55"
-        md="4"
-        sm="12"
-      >
-        <v-card
-          class="mx-auto"
-          :elevation="1"
-          hover
-        >
+<!--            </div>-->
+<!--            <div class="p-6 text-grey-darker text-justify flex flex-row justify-end border-t">-->
+<!--              <div class="p-6 bg-white border-gray-200 text-right">-->
+<!--                <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">-->
+<!--                  Zobacz-->
+<!--                </button>-->
+<!--              </div>-->
+<!--              <div class="p-6 bg-white border-gray-200 text-left">-->
+<!--                <button class="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300" @click="show = !show">-->
+<!--                    Pokaż adres-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div v-if="show">-->
+<!--              super fajnie to zrobiłeś-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
 
-          <v-card-title>
-            Stadion
-          </v-card-title>
+    <div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg" v-for="n in 4">
+      <h2 class="mt-4 font-bold text-xl">Stadion</h2>
 
-          <v-card-subtitle>
-            <v-row>
-              <v-col sm="12" md="6">
-                <div class="mb-2 font-weight-bold">Potrzeba wolontariuszy</div>
-                <div>
-                  <div>
-                    Dziś:
-                    <v-chip
-                      class="ma-2"
-                      color="red"
-                      text-color="white"
-                    >
-                      5
-                    </v-chip>
-                  </div>
-                  <div>
-                    Jutro:
-                    <v-chip
-                      class="ma-2"
-                      color="primary"
-                      text-color="white"
-                    >
-                      1
-                    </v-chip>
-                  </div>
-                  <div>
-                    Pojutrze:
-                    <v-chip
-                      class="ma-2"
-                      color="grey"
-                      text-color="white"
-                    >
-                      nieczynne
-                    </v-chip>
-                  </div>
-                </div>
-              </v-col>
-              <v-col sm="12" md="6">
-                <div class="mb-2 font-weight-bold">Koordynatorzy</div>
-                <div class="mb-4">
-                  <div>Jacek Jackowski</div>
-                  <div>Kom. +48 123 123 123</div>
-                </div>
-                <div>
-                  <div>Karolina Wiśniewska</div>
-                  <div>Kom. +48 123 123 123</div>
-                </div>
-              </v-col>
-            </v-row>
-          </v-card-subtitle>
-
-          <v-card-actions class="justify-between">
-            <v-btn
-              color=""
-              text
-            >
-              Zobacz
-            </v-btn>
-
-            <v-btn
-              depressed
-              @click="show = !show"
-            >
-              Pokaż adres
-            </v-btn>
-          </v-card-actions>
-
-          <v-expand-transition>
-            <div v-show="show">
-              <v-divider></v-divider>
-
-              <v-card-text>
-                <div>
-                  Adres: Olimpijska 2
-                </div>
-              </v-card-text>
-            </div>
-          </v-expand-transition>
-        </v-card>
-      </v-col>
-    </template>
-  </v-row>
-
-
+      <div class="grid grid-cols-2">
+        <div>
+          <h3>Potrzeba wolontariuszy</h3>
+          <div>
+            <div>Dziś: 5</div>
+            <div>Jutro: 1</div>
+            <div>Pojutrze: nieczynne</div>
+          </div>
+        </div>
+        <div>
+          <h1>Koordynatorzy</h1>
+          <div class="mb-4">
+            <div>Jacek Jackowski</div>
+            <div>Kom. +48 123 123 123</div>
+          </div>
+          <div>
+            <div>Karolina Wiśniewska</div>
+            <div>Kom. +48 123 123 123</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -146,7 +94,7 @@ export default {
     ],
   }),
   watch: {
-    loader () {
+    loader() {
       const l = this.loader
       this[l] = !this[l]
 
@@ -159,11 +107,13 @@ export default {
 </script>
 <style>
 .ukraine-blue {
-  background-color:#005bbc
+  background-color: #005bbc
 }
+
 .ukraine-yellow {
-  background-color:#ffd600
+  background-color: #ffd600
 }
+
 @-moz-keyframes loader {
   from {
     transform: rotate(0);
@@ -172,6 +122,7 @@ export default {
     transform: rotate(360deg);
   }
 }
+
 @-webkit-keyframes loader {
   from {
     transform: rotate(0);
@@ -180,6 +131,7 @@ export default {
     transform: rotate(360deg);
   }
 }
+
 @-o-keyframes loader {
   from {
     transform: rotate(0);
@@ -188,6 +140,7 @@ export default {
     transform: rotate(360deg);
   }
 }
+
 @keyframes loader {
   from {
     transform: rotate(0);
