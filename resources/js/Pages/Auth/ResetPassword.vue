@@ -1,4 +1,5 @@
 <template>
+  <div class="min-h-screen background-gdansk flex justify-center">
     <jet-authentication-card>
         <template #logo>
             <jet-authentication-card-logo />
@@ -29,6 +30,7 @@
             </div>
         </form>
     </jet-authentication-card>
+  </div>
 </template>
 
 <script>

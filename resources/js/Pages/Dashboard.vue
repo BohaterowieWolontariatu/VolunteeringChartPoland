@@ -1,10 +1,11 @@
 
 <template>
     <app-layout>
+      <div>
+        <Points />
 
-      <Points />
-
-      <Schedule />
+        <Schedule />
+      </div>
 
     </app-layout>
 </template>
