@@ -11,7 +11,7 @@ class Slot extends Model
     use HasFactory;
 
     protected $fillable = [
-        'shedule_at',
+        'sheduled_at',
         'is_rejected',
         'is_reserve',
 
