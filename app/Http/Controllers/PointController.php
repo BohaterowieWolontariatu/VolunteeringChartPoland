@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Point\StorePointRequest;
 use App\Http\Requests\Point\UpdatePointRequest;
 use App\Models\Point;
+use App\Models\Shift;
+use App\Models\Slot;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -61,9 +64,43 @@ class PointController extends Controller
      * @param \App\Models\Point $point
      * @return \Inertia\Response
      */
-    public function show(Point $point)
+    public function show(Point $point, \Illuminate\Http\Request $request)
     {
-        $point->load('slots', 'shifts.slots');
+        $dayRange = 2;
+
+        $date = $request->get('date', 'now');
+        $startDate = Carbon::make($date);
+        $endDate = $startDate->clone()->addDays($dayRange);
+
+
+        $point->load(
+            [
+                'shifts',
+                'slots' => fn($query) => $query
+                    ->whereBetween('sheduled_at', [$startDate, $endDate])
+                    ->orderBy('sheduled_at'),
+                'shifts.slots.user',
+            ]
+        );
+
+        $point->slots->groupBy('sheduled_at');
+        $point->schedule = collect();
+
+        for ($iDate = $startDate->clone(); $iDate <= $endDate; $iDate = $iDate->addDay()) {
+            $point->schedule->push([
+            'sheduled_at' => $iDate->clone(),
+            'shifts' => $point->shifts->map(function(Shift $shift) use ($iDate, $point) {
+                $aShift = $shift->toArray();
+                $aShift['slots'] =  $point->slots->filter(function (Slot $slot) use ($shift, $iDate) {
+                    return $iDate->isSameDay($slot->sheduled_at) && $slot->shift_id === $shift->id;
+                });
+                return $aShift;
+
+            })]);
+
+        }
+
+        $pointArray = $point->toArray();
 
         return Inertia::render('Point/Show', [
             'point' => $point,
