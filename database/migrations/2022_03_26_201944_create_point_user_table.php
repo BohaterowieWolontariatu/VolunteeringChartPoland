@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class PointUser extends Migration
+class CreatePointUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,6 +19,7 @@ class PointUser extends Migration
             $table->id();
             $table->foreignIdFor(Point::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
+            $table->timestamps();
         });
     }
 
