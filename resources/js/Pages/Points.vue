@@ -86,14 +86,6 @@ export default {
 }
 </script>
 <style>
-.ukraine-blue {
-  background-color: #005bbc
-}
-
-.ukraine-yellow {
-  background-color: #ffd600
-}
-
 @-moz-keyframes loader {
   from {
     transform: rotate(0);

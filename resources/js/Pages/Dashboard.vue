@@ -1,7 +1,7 @@
 
 <template>
     <app-layout>
-      <div class="container mx-auto">
+      <div>
         <Points />
 
         <Schedule />

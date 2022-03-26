@@ -1,0 +1,14 @@
+.ukraine-blue {
+    background-color: #005bbc
+}
+
+.ukraine-yellow {
+    background-color: #ffd600
+}
+.background-gdansk {
+    background: url('http://ukraina.gdanskpomaga.pl/wp-content/uploads/2022/02/ua_bg.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

@@ -1,13 +1,14 @@
 <template>
     <app-layout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Lokalizacje
+            <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
+                Placówki
             </h2>
         </template>
 
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div class="container mx-auto">
+        <breadcrumbs />
+      <div class="flex flex-col md:flex-row space-x-2">
 
         <point-card-component
           v-for="point in $page.props.points.data"
@@ -15,24 +16,22 @@
 
           :point="point"
         />
-      </div>
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-              <pre>{{ $page.props}}</pre>
-            </div>
-        </div>
+      </div>
+      </div>
     </app-layout>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout';
 import PointCardComponent from '@/Pages/Point/components/PointCardCompoment.vue';
+import Breadcrumbs from "@/Pages/Breadcrumbs.vue";
 
 export default {
         props: ['sessions'],
 
         components: {
+          Breadcrumbs,
           PointCardComponent,
             AppLayout,
         },
