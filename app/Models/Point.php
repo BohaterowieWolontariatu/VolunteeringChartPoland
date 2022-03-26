@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Point extends Model
@@ -31,8 +32,17 @@ class Point extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pointSlots(): HasMany
+    public function slots(): HasMany
     {
-        return $this->hasMany(PointSlot::class);
+        return $this->hasMany(Slot::class);
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 }

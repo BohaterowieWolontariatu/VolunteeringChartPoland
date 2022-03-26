@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Language;
 use App\Models\Point;
-use App\Models\PointSlot;
+use App\Models\Slot;
 use App\Models\Shift;
 use App\Models\User;
-use Database\Factories\PointsFactory;
 use Illuminate\Database\Seeder;
 
 class PointSeeder extends Seeder
@@ -22,20 +22,20 @@ class PointSeeder extends Seeder
             ->count(3)
             ->has(
                 Shift::factory()
-                ->count(3)
-                ->has(
-                    PointSlot::factory()
-                        ->state(function (array $attributes, Shift $shift) {
-                            return ['point_id' => $shift->point->id];
-                        })
-                        ->for(
-                            User::factory()
-                        )
-                        ->count(10)
-                )
+                    ->count(3)
+                    ->has(
+                        Slot::factory()
+                            ->state(function (array $attributes, Shift $shift) {
+                                return ['point_id' => $shift->point->id];
+                            })
+                            ->for(
+                                User::factory()
+                            )
+                            ->count(10)
+                    )
 
             )
-//            ->hasShifts(3)
+            ->has(User::factory()->count(2))
             ->create();
     }
 }

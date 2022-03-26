@@ -3,8 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
-class PointSlotFactory extends Factory
+class LanguageUserFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,9 +15,10 @@ class PointSlotFactory extends Factory
     public function definition()
     {
         return [
-            'shedule_at' => $this->faker->dateTimeBetween('now', '+7days'),
-            'is_rejected' => $this->faker->boolean(10),
-            'is_reserve' => $this->faker->boolean(),
+            'language_id' => $this->faker->numberBetween(1, 3),
+            'user_id' => $this->faker->numberBetween(1, 2),
         ];
     }
+
+
 }

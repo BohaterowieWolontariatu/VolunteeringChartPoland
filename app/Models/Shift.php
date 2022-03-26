@@ -26,7 +26,7 @@ class Shift extends Model
         return $this->belongsTo(Point::class);
     }
 
-    public function pointSlots() {
-        return $this->hasMany(PointSlot::class);
+    public function slots() {
+        return $this->hasMany(Slot::class);
     }
 }
