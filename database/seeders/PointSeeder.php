@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Language;
 use App\Models\Point;
 use App\Models\Slot;
 use App\Models\Shift;
@@ -35,7 +36,6 @@ class PointSeeder extends Seeder
 
             )
             ->has(User::factory()->count(2))
-//            ->hasShifts(3)
             ->create();
     }
 }
