@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    protected $baseUri = '';
+    protected string $baseUri = '';
 
     protected function makeUrl($url = ''): string
     {
