@@ -88,7 +88,7 @@
             {{ i.title }}
           </p>
         </div>
-        <div class="py-2 ukraine-blue text-white">
+        <div class="py-2 primary-blue text-white">
           <p class="font-bold text-xl">
             {{ i.description }}
           </p>
@@ -107,7 +107,7 @@
             :key="jkey+345"
             class="w-full"
           >
-            <div class="py-2 ukraine-yellow">
+            <div class="py-2 primary-yellow">
               <p class="font-bold">
                 {{ j.title }}
               </p>

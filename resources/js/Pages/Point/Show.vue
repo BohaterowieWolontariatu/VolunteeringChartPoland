@@ -6,7 +6,6 @@
       </h1>
     </template>
 
-
     <div class="container mx-auto">
 
       <breadcrumbs />
@@ -155,8 +154,8 @@
 
       <div class="schedule m-5">
         <div class="md:flex md:space-x-4 w-full">
-          <div
-            v-for="(i,key) in [{
+          <PointDateComponent
+            v-for="(pointDate,key) in [{
                             title: 'Poniedziałek',
                             color: 'bg-green-700',
                             description: 'Potrzeba osób: 13'
@@ -169,104 +168,9 @@
                             color: 'bg-green-500',
                             description: 'Potrzeba osób: 2'
                         }]"
+            :pointDate="point"
             :key="key+334"
-            class="text-center sm:w-full md:w-1/2 shadow"
-          >
-            <div :class="i.color" class="py-2 text-white">
-              <p class="text-3xl">
-                {{ i.title }}
-              </p>
-            </div>
-            <div class="py-2 ukraine-blue text-white">
-              <p class="font-bold text-xl">
-                {{ i.description }}
-              </p>
-            </div>
-
-            <div>
-              <div
-                v-for="(j, jkey) in [
-                                    {
-                                        title: 'Zmiana 1 w godzinach 15:00-18:00',
-                                    },
-                                    {
-                                       title: 'Zmiana 2 w godzinach 18:00-21:00',
-                                    }
-                                ]"
-                :key="jkey+345"
-                class="w-full"
-              >
-                <div class="py-2 ukraine-yellow">
-                  <p class="font-bold">
-                    {{ j.title }}
-                  </p>
-                </div>
-
-                <div>
-                  <div
-                    v-for="(k,kkey) in 4"
-                    :key="kkey"
-                    class="bg-white px-4 flex items-center mb-2 shadow-md"
-                    style="min-height:50px"
-                  >
-                    <!--                <div class="" >-->
-                    <div v-if="k <= 2" class="flex w-full items-center justify-between">
-                      <div class="flex items-center">
-                        <div
-                          class="flex relative w-9 h-9 bg-green-500 justify-center items-center m-1 mr-2 text-xl rounded-full text-white">
-                          {{ k % 2 ? 'R' : 'D' }}
-                        </div>
-                        <div class="ml-3" style="font-size:22px">{{ k % 2 ? 'Robert' : 'Dawid' }}</div>
-                      </div>
-                      <div>
-                        PL / EN
-                      </div>
-                    </div>
-                    <div v-else class="w-full">
-                      <!--                    <div class="w-full">-->
-                      <button
-                        class="w-full bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
-                        Zapisz się
-                      </button>
-                      <!--                                                    <v-btn-->
-                      <!--                                                        depressed-->
-                      <!--                                                        color="success"-->
-                      <!--                                                        large-->
-                      <!--                                                    >-->
-                      <!--                                                        Zapisz się-->
-                      <!--                                                    </v-btn>-->
-                      <!--                    </div>-->
-                    </div>
-
-                    <!--                </div>-->
-                  </div>
-
-                  <div
-                    class="pt-0 w-full"
-                  >
-                    <div class="p-4" style="min-height:95px">
-                      <div class="flex items-center justify-center">
-                        <!--                    <div class=">-->
-                        <button
-                          class="w-full bg-gray-600 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300">
-                          Zapisz się na listę rezerwową
-                        </button>
-                        <!--                                                    <v-btn-->
-                        <!--                                                        depressed-->
-                        <!--                                                        color="success"-->
-                        <!--                                                        large-->
-                        <!--                                                    >-->
-                        <!--                                                        Zapisz się-->
-                        <!--                                                    </v-btn>-->
-                        <!--                    </div>-->
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          />
 
         </div>
       </div>
@@ -278,21 +182,23 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout'
 import Breadcrumbs from "@/Pages/Breadcrumbs.vue";
+import PointDateComponent from "@/Pages/Point/PointDateComponent.vue";
 
 export default {
   props: ['sessions'],
   data() {
-    return {
-      point: null
+    return {  }
+  },
+  computed: {
+    point() {
+      return this.$page.props.point || []
     }
   },
   components: {
+    PointDateComponent,
     Breadcrumbs,
     AppLayout,
   },
-  mounted() {
-    this.point = this.$page.props.point
-  }
 }
 </script>
 <style scoped>
