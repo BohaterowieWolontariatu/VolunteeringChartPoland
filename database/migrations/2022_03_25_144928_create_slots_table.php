@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePointSlotsTable extends Migration
+class CreateSlotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,16 +16,15 @@ class CreatePointSlotsTable extends Migration
      */
     public function up()
     {
-        Schema::create('point_slots', function (Blueprint $table) {
+        Schema::create('slots', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Point::class)->constrained();
             $table->foreignIdFor(Shift::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
-            $table->date('shedule_at')->index();
+            $table->date('sheduled_at')->index();
 
             $table->boolean('is_rejected')->default(false);
             $table->boolean('is_reserve')->default(false);
-
 
             $table->dateTime('rejected_at')->nullable();
             $table->dateTime('confirmed_at')->nullable();
@@ -40,6 +39,7 @@ class CreatePointSlotsTable extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *
@@ -47,6 +47,6 @@ class CreatePointSlotsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('point_slots');
+        Schema::dropIfExists('slots');
     }
 }

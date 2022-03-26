@@ -31,8 +31,8 @@ class Point extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pointSlots(): HasMany
+    public function slots(): HasMany
     {
-        return $this->hasMany(PointSlot::class);
+        return $this->hasMany(Slot::class);
     }
 }

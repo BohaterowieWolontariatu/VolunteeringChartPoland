@@ -25,9 +25,10 @@ class PointController extends Controller
 
 
         return Inertia::render('Point/Index', [
-           'points' => $points
+            'points' => $points,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,10 +40,11 @@ class PointController extends Controller
         //
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Point\StorePointRequest  $request
+     * @param \App\Http\Requests\Point\StorePointRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StorePointRequest $request)
@@ -52,23 +54,27 @@ class PointController extends Controller
         return Redirect::route('points.index');
     }
 
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Point  $point
+     * @param \App\Models\Point $point
      * @return \Inertia\Response
      */
     public function show(Point $point)
     {
+
+        $point = Point::with('slots', 'shifts')->find($point->id);
         return Inertia::render('Point/Show', [
-           'point' => $point
+            'point' => $point
         ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Point  $point
+     * @param \App\Models\Point $point
      * @return \Illuminate\Http\Response
      */
     public function edit(Point $point)

@@ -70,7 +70,7 @@ class User extends Authenticatable
 
     public function pointSlots()
     {
-        return $this->hasMany(PointSlot::class);
+        return $this->hasMany(Slot::class);
     }
 
     /**
