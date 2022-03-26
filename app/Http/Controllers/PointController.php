@@ -63,10 +63,10 @@ class PointController extends Controller
      */
     public function show(Point $point)
     {
+        $point->load('slots', 'shifts.slots');
 
-        $point = Point::with('slots', 'shifts')->find($point->id);
         return Inertia::render('Point/Show', [
-            'point' => $point
+            'point' => $point,
         ]);
     }
 
