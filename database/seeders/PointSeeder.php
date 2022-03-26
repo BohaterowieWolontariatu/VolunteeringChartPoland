@@ -21,19 +21,20 @@ class PointSeeder extends Seeder
             ->count(3)
             ->has(
                 Shift::factory()
-                ->count(3)
-                ->has(
-                    Slot::factory()
-                        ->state(function (array $attributes, Shift $shift) {
-                            return ['point_id' => $shift->point->id];
-                        })
-                        ->for(
-                            User::factory()
-                        )
-                        ->count(10)
-                )
+                    ->count(3)
+                    ->has(
+                        Slot::factory()
+                            ->state(function (array $attributes, Shift $shift) {
+                                return ['point_id' => $shift->point->id];
+                            })
+                            ->for(
+                                User::factory()
+                            )
+                            ->count(10)
+                    )
 
             )
+            ->has(User::factory()->count(2))
 //            ->hasShifts(3)
             ->create();
     }
