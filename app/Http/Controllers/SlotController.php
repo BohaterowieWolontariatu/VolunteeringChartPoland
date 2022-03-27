@@ -20,23 +20,28 @@ class SlotController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $shift = $request->get('pointShift');
-        if ($shift['capacity'] >= count($shift['slots'])) {
-            foreach ($shift['slots'] as $slot) {
-                if ($slot['user_id'] === Auth::id()) {
-                    return Redirect::route('points.show', [
-                        'point' => Point::find($shift['point_id'])
-                    ]);
-                }
+        if ($request->get('is_reserve') === false) {
+            if ($shift['capacity'] <= count($shift['slots'])) {
+                return Redirect::route('points.show', [
+                    'point' => Point::find($shift['point_id'])
+                ]);
             }
-            Slot::create([
-                'point_id' => $shift['point_id'],
-                'shift_id' => $shift['id'],
-                'sheduled_at' => Carbon::create($request->get('schedule_at')),
-                'user_id' => Auth::id(),
-                'is_rejected' => false,
-                'is_reserve' => false,
-            ]);
         }
+        foreach ($shift['slots'] as $slot) {
+            if ($slot['user_id'] === Auth::id()) {
+                return Redirect::route('points.show', [
+                    'point' => Point::find($shift['point_id'])
+                ]);
+            }
+        }
+        Slot::create([
+            'point_id' => $shift['point_id'],
+            'shift_id' => $shift['id'],
+            'sheduled_at' => Carbon::create($request->get('schedule_at')),
+            'user_id' => Auth::id(),
+            'is_rejected' => false,
+            'is_reserve' => (bool)$request->get('is_reserve'),
+        ]);
         return Redirect::route('points.show', [
             'point' => Point::find($shift['point_id'])
         ]);

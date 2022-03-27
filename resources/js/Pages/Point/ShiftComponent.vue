@@ -29,7 +29,6 @@
         :key="i"
       ></EmptySlotComponent>
 
-
       <ReserveListSignComponent
         :pointShift="pointShift"
         :schedule_at="schedule_at"
@@ -41,10 +40,11 @@
 import ReserveListSignComponent from '@/Pages/Point/ReserveListSignComponent.vue';
 import SlotComponent from '@/Pages/Point/SlotComponent.vue';
 import EmptySlotComponent from '@/Pages/Point/EmptySlotComponent.vue';
+import JetSectionBorder from '@/Jetstream/SectionBorder'
 
 export default {
   name: 'ShiftComponent',
-  components: { EmptySlotComponent, ReserveListSignComponent, SlotComponent },
+  components: { EmptySlotComponent, ReserveListSignComponent, SlotComponent, JetSectionBorder },
 
   computed: {
 
