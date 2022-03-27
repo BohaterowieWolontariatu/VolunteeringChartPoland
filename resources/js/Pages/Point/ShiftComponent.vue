@@ -14,27 +14,42 @@
     </div>
     <div>
       <SlotComponent
-        v-for="(slot,kkey) in pointShift.slots"
+        v-for="(slot) in pointShift.slots"
         :shiftSlot="slot"
         :key="slot.id"
         class=""
         style="min-height:50px"
       />
+      <EmptySlotComponent
+        v-for="i in availableCapacity"
+        :key="i"
+      ></EmptySlotComponent>
+
+
       <ReserveListSignComponent/>
     </div>
   </div>
 </template>
 <script>
-import ReserveListSignComponent from "@/Pages/Point/ReserveListSignComponent.vue"
-import SlotComponent from "@/Pages/Point/SlotComponent.vue"
+import ReserveListSignComponent from '@/Pages/Point/ReserveListSignComponent.vue';
+import SlotComponent from '@/Pages/Point/SlotComponent.vue';
+import EmptySlotComponent from '@/Pages/Point/EmptySlotComponent.vue';
 
 export default {
   name: 'ShiftComponent',
-  components: {ReserveListSignComponent, SlotComponent},
+  components: { EmptySlotComponent, ReserveListSignComponent, SlotComponent },
+
+  computed: {
+
+    availableCapacity () {
+      return Math.max(0, this.pointShift.capacity - this.pointShift.slots.length);
+    },
+  },
+
   props: {
-    pointShift: {}
-  }
-}
+    pointShift: {},
+  },
+};
 </script>
 <style scoped>
 

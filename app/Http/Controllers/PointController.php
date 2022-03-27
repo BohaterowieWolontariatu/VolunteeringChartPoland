@@ -9,6 +9,7 @@ use App\Models\Shift;
 use App\Models\Slot;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -64,7 +65,7 @@ class PointController extends Controller
      * @param \App\Models\Point $point
      * @return \Inertia\Response
      */
-    public function show(Point $point, \Illuminate\Http\Request $request)
+    public function show(Point $point, Request $request)
     {
         $dayRange = 2;
 
@@ -79,28 +80,29 @@ class PointController extends Controller
                 'slots' => fn($query) => $query
                     ->whereBetween('sheduled_at', [$startDate, $endDate])
                     ->orderBy('sheduled_at'),
-                'shifts.slots.user',
+                'slots.user',
             ]
         );
 
         $point->slots->groupBy('sheduled_at');
-        $point->schedule = collect();
+        $point->schedules = collect();
 
         for ($iDate = $startDate->clone(); $iDate <= $endDate; $iDate = $iDate->addDay()) {
-            $point->schedule->push([
-            'sheduled_at' => $iDate->clone(),
-            'shifts' => $point->shifts->map(function(Shift $shift) use ($iDate, $point) {
-                $aShift = $shift->toArray();
-                $aShift['slots'] =  $point->slots->filter(function (Slot $slot) use ($shift, $iDate) {
-                    return $iDate->isSameDay($slot->sheduled_at) && $slot->shift_id === $shift->id;
-                });
-                return $aShift;
-
-            })]);
-
+            $point->schedules->push(
+                [
+                    'sheduled_at' => $iDate->clone(),
+                    'shifts' => $point->shifts->map(function (Shift $shift) use ($iDate, $point) {
+                        $aShift = $shift->toArray();
+                        $aShift['slots'] = $point->slots
+                            ->filter(function (Slot $slot) use ($shift, $iDate) {
+                                return $iDate->isSameDay($slot->sheduled_at) && $slot->shift_id === $shift->id;
+                            })
+                            ->values();
+                        return $aShift;
+                    }),
+                ]
+            );
         }
-
-        $pointArray = $point->toArray();
 
         return Inertia::render('Point/Show', [
             'point' => $point,
