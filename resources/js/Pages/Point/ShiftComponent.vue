@@ -22,6 +22,8 @@
       />
       <EmptySlotComponent
         v-for="i in availableCapacity"
+        :pointShift="pointShift"
+        :schedule_at="schedule_at"
         :key="i"
       ></EmptySlotComponent>
 
@@ -48,6 +50,7 @@ export default {
 
   props: {
     pointShift: {},
+    schedule_at: {},
   },
 };
 </script>

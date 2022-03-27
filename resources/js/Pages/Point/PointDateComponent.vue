@@ -13,6 +13,7 @@
       <ShiftComponent
         v-for="shift in schedule.shifts"
         :pointShift="shift"
+        :schedule_at="schedule.sheduled_at"
         :key="shift.id"
       />
     </div>
@@ -29,7 +30,9 @@ export default {
 
     dayName () {
       let date = new Date(this.schedule.sheduled_at);
-      switch (date.getDay() + 1) {
+      switch (date.getDay()) {
+        case 0:
+          return 'Niedziela';
         case 1:
           return 'Poniedziałek';
         case 2:
@@ -42,8 +45,6 @@ export default {
           return 'Piątek';
         case 6:
           return 'Sobota';
-        case 7:
-          return 'Niedziela';
       }
 
     },
