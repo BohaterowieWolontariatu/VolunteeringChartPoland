@@ -31,6 +31,7 @@
     },
     "dependencies": {
         "@vue/composition-api": "^1.4.9",
-        "matice": "^1.1.4"
+        "matice": "^1.1.4",
+        "tw-elements": "^1.0.0-alpha12"
     }
 }
