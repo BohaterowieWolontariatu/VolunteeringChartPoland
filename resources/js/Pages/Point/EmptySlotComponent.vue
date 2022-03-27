@@ -18,7 +18,8 @@ export default {
     assignToSlot() {
       this.$inertia.post(route("slot.store"), {
         schedule_at: this.schedule_at,
-        pointShift: this.pointShift
+        pointShift: this.pointShift,
+        is_reserve: false,
       })
     }
   },

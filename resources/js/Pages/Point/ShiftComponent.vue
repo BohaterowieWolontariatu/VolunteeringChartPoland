@@ -30,7 +30,10 @@
       ></EmptySlotComponent>
 
 
-      <ReserveListSignComponent/>
+      <ReserveListSignComponent
+        :pointShift="pointShift"
+        :schedule_at="schedule_at"
+      />
     </div>
   </div>
 </template>

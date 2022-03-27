@@ -16,7 +16,20 @@
 </template>
 <script>
 export default {
-  name: 'ReserveListSignComponent'
+  name: 'ReserveListSignComponent',
+  methods: {
+    assignToSlot() {
+      this.$inertia.post(route("slot.store"), {
+        schedule_at: this.schedule_at,
+        pointShift: this.pointShift,
+        is_reserve: true,
+      })
+    }
+  },
+  props: {
+    schedule_at: {},
+    pointShift: {},
+  },
 }
 </script>
 <style scoped>
