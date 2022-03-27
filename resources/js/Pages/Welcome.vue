@@ -1,6 +1,6 @@
 <template>
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0 background-gdansk">
-        <div v-if="canLogin" class="hidden fixed top-0 px-6 py-4 sm:block">
+        <div v-if="canLogin" class="fixed top-0 px-6 py-4 sm:block">
             <inertia-link v-if="$page.props.user" href="/points" class="text-sm text-white text-2xl">
                 Placówki
             </inertia-link>
@@ -16,10 +16,14 @@
             </template>
         </div>
 
-      <div>
-
+      <div class="flex justify-center items-center">
+        <img
+          src="https://ukraina.gdanskpomaga.pl/wp-content/uploads/2022/02/ua_logo-300x300.png"
+          alt="Gdansk pomaga"
+          width="300"
+          height="300"
+        >
       </div>
-        <img src="https://ukraina.gdanskpomaga.pl/wp-content/uploads/2022/02/ua_logo-300x300.png" alt="" class="wp-image-20" srcset="https://ukraina.gdanskpomaga.pl/wp-content/uploads/2022/02/ua_logo-300x300.png 300w, https://ukraina.gdanskpomaga.pl/wp-content/uploads/2022/02/ua_logo-150x150.png 150w, https://ukraina.gdanskpomaga.pl/wp-content/uploads/2022/02/ua_logo.png 500w" sizes="(max-width: 300px) 100vw, 300px" width="300" height="300">
     </div>
 </template>
 
