@@ -17,6 +17,8 @@
         v-for="(slot) in pointShift.slots"
         :shiftSlot="slot"
         :key="slot.id"
+        :pointShift="pointShift"
+        :schedule_at="schedule_at"
         class=""
         style="min-height:50px"
       />

@@ -20,7 +20,14 @@ class SlotController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $shift = $request->get('pointShift');
-        if ($shift['capacity'] > count($shift['slots'])) {
+        if ($shift['capacity'] >= count($shift['slots'])) {
+            foreach ($shift['slots'] as $slot) {
+                if ($slot['user_id'] === Auth::id()) {
+                    return Redirect::route('points.show', [
+                        'point' => Point::find($shift['point_id'])
+                    ]);
+                }
+            }
             Slot::create([
                 'point_id' => $shift['point_id'],
                 'shift_id' => $shift['id'],
@@ -32,6 +39,19 @@ class SlotController extends Controller
         }
         return Redirect::route('points.show', [
             'point' => Point::find($shift['point_id'])
+        ]);
+    }
+
+    /**
+     * @param Slot $slot
+     * @return RedirectResponse
+     */
+    public function destroy(Slot $slot): RedirectResponse
+    {
+        $pointId = $slot->point_id;
+        $slot->delete();
+        return Redirect::route('points.show', [
+            'point' => Point::find($pointId)
         ]);
     }
 }
