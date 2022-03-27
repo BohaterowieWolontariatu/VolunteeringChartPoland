@@ -17,16 +17,22 @@
         v-for="(slot) in pointShift.slots"
         :shiftSlot="slot"
         :key="slot.id"
+        :pointShift="pointShift"
+        :schedule_at="schedule_at"
         class=""
         style="min-height:50px"
       />
       <EmptySlotComponent
         v-for="i in availableCapacity"
+        :pointShift="pointShift"
+        :schedule_at="schedule_at"
         :key="i"
       ></EmptySlotComponent>
 
-
-      <ReserveListSignComponent/>
+      <ReserveListSignComponent
+        :pointShift="pointShift"
+        :schedule_at="schedule_at"
+      />
     </div>
   </div>
 </template>
@@ -34,10 +40,11 @@
 import ReserveListSignComponent from '@/Pages/Point/ReserveListSignComponent.vue';
 import SlotComponent from '@/Pages/Point/SlotComponent.vue';
 import EmptySlotComponent from '@/Pages/Point/EmptySlotComponent.vue';
+import JetSectionBorder from '@/Jetstream/SectionBorder'
 
 export default {
   name: 'ShiftComponent',
-  components: { EmptySlotComponent, ReserveListSignComponent, SlotComponent },
+  components: { EmptySlotComponent, ReserveListSignComponent, SlotComponent, JetSectionBorder },
 
   computed: {
 
@@ -48,6 +55,7 @@ export default {
 
   props: {
     pointShift: {},
+    schedule_at: {},
   },
 };
 </script>

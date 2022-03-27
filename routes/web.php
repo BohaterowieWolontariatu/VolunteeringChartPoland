@@ -37,7 +37,8 @@ Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->get('/da
 Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->group(function () {
     Route::resource('points', PointController::class);
     Route::resource('languages', LanguageController::class);
-    Route::post('slot', SlotController::class)->name('slot.store');
+    Route::post('slot', [SlotController::class, "store"])->name('slot.store');
+    Route::delete('slot/{slot}', [SlotController::class, "destroy"])->name('slot.destroy');
 });
 
 // GRUPA ROUTÓW UŻYWANA DO ZATRZYMANIA UŻYTKOWNIKA NA FORMULARZU POROZUMIENIA.

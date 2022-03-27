@@ -9,7 +9,12 @@
         <div class="ml-3" style="font-size:22px">{{ shiftSlot.user.name }}</div>
       </div>
       <div>
-        TO / DO
+        <button v-if="shiftSlot.user.id === $page.props.user.id"
+          class="w-full primary-blue text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-500 transition duration-300"
+          @click="resignFromSlot"
+        >
+          Wypisz się
+        </button>
       </div>
     </div>
   </div>
@@ -17,9 +22,16 @@
 <script>
 export default {
   name: 'SlotCoEmptySlotComponent',
+  methods: {
+    resignFromSlot() {
+      this.$inertia.delete(route("slot.destroy", this.shiftSlot))
+    }
+  },
   props: {
-    shiftSlot: {}
-  }
+    schedule_at: {},
+    pointShift: {},
+    shiftSlot: {},
+  },
 }
 </script>
 <style scoped>

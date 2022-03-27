@@ -4,6 +4,7 @@
 
       <button
         class="w-full primary-blue text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-500 transition duration-300"
+        @click="assignToSlot"
       >
         Zapisz się
       </button>
@@ -13,9 +14,18 @@
 <script>
 export default {
   name: 'EmptySlotComponent.vue',
-
+  methods: {
+    assignToSlot() {
+      this.$inertia.post(route("slot.store"), {
+        schedule_at: this.schedule_at,
+        pointShift: this.pointShift,
+        is_reserve: false,
+      })
+    }
+  },
   props: {
-    shiftSlot: {},
+    schedule_at: {},
+    pointShift: {},
   },
 };
 </script>

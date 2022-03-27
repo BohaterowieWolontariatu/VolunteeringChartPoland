@@ -73,12 +73,11 @@ class PointController extends Controller
         $startDate = Carbon::make($date);
         $endDate = $startDate->clone()->addDays($dayRange);
 
-
         $point->load(
             [
                 'shifts',
                 'slots' => fn($query) => $query
-                    ->whereBetween('sheduled_at', [$startDate, $endDate])
+                    ->whereBetween('sheduled_at', [$startDate->toDateString(), $endDate->toDateString()])
                     ->orderBy('sheduled_at'),
                 'slots.user',
             ]

@@ -14,7 +14,9 @@ class Slot extends Model
         'sheduled_at',
         'is_rejected',
         'is_reserve',
-
+        'point_id',
+        'shift_id',
+        'user_id',
         'rejected_at',
         'confirmed_at',
 

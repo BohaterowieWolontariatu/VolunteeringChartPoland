@@ -8,7 +8,7 @@
 
       <div class="container mx-auto">
         <breadcrumbs />
-      <div class="flex flex-col md:flex-row space-x-2">
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
 
         <point-card-component
           v-for="point in $page.props.points.data"
