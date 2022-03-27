@@ -19,7 +19,7 @@ class IsAgreementFilled
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->agreement === null) {
+        if (Auth::user()->agreement === null && !Auth::user()->has_agreement_signed) {
             return redirect()->route('agreement.create');
         }
         return $next($request);
