@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAgreementRequest;
 use App\Models\Agreement;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -25,6 +24,6 @@ class AgreementController extends Controller
         $user->has_agreement_signed = true;
         $user->save();
 
-        return Redirect::route('dashboard');
+        return Redirect::route('points.index');
     }
 }
