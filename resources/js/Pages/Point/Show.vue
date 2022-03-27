@@ -8,7 +8,7 @@
 
     <div class="container mx-auto">
 
-      <breadcrumbs />
+      <breadcrumbs/>
 
       <div class="flex flex-col md:flex-row sm:space-x-5 information-wrapper pb-4 shadow">
 
@@ -152,24 +152,15 @@
       <!--          </div>-->
       <!--        </div>-->
 
+
       <div class="schedule m-5">
         <div class="md:flex md:space-x-4 w-full">
-          <PointDateComponent
-            v-for="(pointDate,key) in [{
-                            title: 'Poniedziałek',
-                            color: 'bg-green-700',
-                            description: 'Potrzeba osób: 13'
-                        },{
-                            title: 'Wtorek',
-                            color: 'bg-green-600',
-                            description: 'Potrzeba osób: 2'
-                        },{
-                            title: 'Środa',
-                            color: 'bg-green-500',
-                            description: 'Potrzeba osób: 2'
-                        }]"
+          <point-date-component
+            v-for="schedule in point.schedules"
+            :key="schedule.sheduled_at"
+
             :pointDate="point"
-            :key="key+334"
+            :schedule="schedule"
           />
 
         </div>
@@ -180,26 +171,26 @@
 </template>
 
 <script>
-import AppLayout from '@/Layouts/AppLayout'
-import Breadcrumbs from "@/Pages/Breadcrumbs.vue";
-import PointDateComponent from "@/Pages/Point/PointDateComponent.vue";
+import AppLayout from '@/Layouts/AppLayout';
+import Breadcrumbs from '@/Pages/Breadcrumbs.vue';
+import PointDateComponent from '@/Pages/Point/PointDateComponent.vue';
 
 export default {
   props: ['sessions'],
-  data() {
-    return {  }
+  data () {
+    return {};
   },
   computed: {
-    point() {
-      return this.$page.props.point || []
-    }
+    point () {
+      return this.$page.props.point || [];
+    },
   },
   components: {
     PointDateComponent,
     Breadcrumbs,
     AppLayout,
   },
-}
+};
 </script>
 <style scoped>
 .schedule {
