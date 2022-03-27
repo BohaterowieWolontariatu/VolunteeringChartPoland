@@ -8,11 +8,11 @@
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-<!--                <div v-if="$page.props.jetstream.canUpdateProfileInformation">-->
-<!--                    <update-profile-information-form :user="$page.props.user" />-->
+                <div>
+                    <show-profile-information :user="$page.props.user" />
 
-<!--                    <jet-section-border />-->
-<!--                </div>-->
+                    <jet-section-border />
+                </div>
 
                 <div v-if="$page.props.jetstream.canUpdatePassword">
                     <update-password-form class="mt-10 sm:mt-0" />
@@ -44,11 +44,13 @@
     import TwoFactorAuthenticationForm from './TwoFactorAuthenticationForm'
     import UpdatePasswordForm from './UpdatePasswordForm'
     import UpdateProfileInformationForm from './UpdateProfileInformationForm'
+    import ShowProfileInformation from "./ShowProfileInformation";
 
     export default {
         props: ['sessions'],
 
         components: {
+          ShowProfileInformation,
             AppLayout,
             DeleteUserForm,
             JetSectionBorder,
