@@ -1,10 +1,10 @@
 <template>
-  <div class="w-full md:w-1/3 mb-5 md:mb-0">
+  <div class="w-full flex flex-col justify-between px-4">
 
 <!--    <div class="max-w-2xl sm:px-6 lg:px-8">-->
-      <div class="overflow-hidden shadow-md">
+      <div class="overflow-hidden shadow-md flex flex-col">
         <!-- card header -->
-        <div class="px-6 py-4 bg-white border-b border-gray-200 font-bold uppercase">
+        <div class="px-6 py-4 bg-white border-b border-gray-200 font-bold uppercase h-16">
           {{point.name}}
         </div>
 
@@ -35,7 +35,7 @@
               </div>
             </div>
           </div>
-          <div>
+          <div class="h-28">
             <p class="mb-1">{{point.lead}}</p>
           </div>
         </div>
