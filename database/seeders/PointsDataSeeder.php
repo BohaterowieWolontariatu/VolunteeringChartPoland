@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class PointsDataSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -16,21 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create(
-            [
-                'email' => 'admin@example.com',
-                'has_agreement_signed' => 1
-            ]
-        );
-        Language::factory()->count(2)->create();
-        User::factory(10)->create();
-
-//        $this->call(
-//            [
-//                PointSeeder::class,
-//            ]
-//        );
-
         $path = public_path('sql/points.sql');
         $sql = file_get_contents($path);
         DB::unprepared($sql);
