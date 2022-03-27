@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\SlotController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,6 +37,7 @@ Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->get('/da
 Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->group(function () {
     Route::resource('points', PointController::class);
     Route::resource('languages', LanguageController::class);
+    Route::post('slot', SlotController::class)->name('slot.store');
 });
 
 // GRUPA ROUTÓW UŻYWANA DO ZATRZYMANIA UŻYTKOWNIKA NA FORMULARZU POROZUMIENIA.
