@@ -9,6 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SlotController extends Controller
 {
@@ -59,4 +61,31 @@ class SlotController extends Controller
             'point' => Point::find($pointId)
         ]);
     }
+
+
+    public function decline(Point $point, Slot $slot, string $token)
+    {
+        if($slot->mail_reminder_token !== $token) {
+            throw new NotFoundHttpException();
+        }
+
+        return Inertia::render('PointSlot/Decline', [
+            'point' => $point,
+            'slot' => $slot,
+            'token' => $token,
+        ]);
+    }
+
+
+    public function unsubscribe(Point $point, Slot $slot, string $token)
+    {
+        if($slot->mail_reminder_token !== $token) {
+            throw new NotFoundHttpException();
+        }
+        $slot->delete();
+
+        return Redirect::route('points.index');
+
+    }
+
 }

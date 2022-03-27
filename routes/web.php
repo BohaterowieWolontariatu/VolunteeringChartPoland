@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\PointController;
+use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\PointController;
 use App\Http\Controllers\SlotController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\AgreementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,13 @@ Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->get('/da
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
+Route::get('points/{point}/slots/{slot}/decline/{token}', [SlotController::class, 'decline'])
+    ->name('slots.decline')
+    ->scopeBindings();
+
+Route::delete('points/{point}/slots/{slot}/decline/{token}', [SlotController::class, 'unsubscribe'])
+    ->name('slots.unsubscribe')
+    ->scopeBindings();
 
 // TU DODAJEMY ROUTY. MAJĄ ZABEZPIECZENIE GDY NIE WYPELNIMY POROZUMIENIA
 Route::middleware(['auth:sanctum', 'verified', 'active', 'agreement'])->group(function () {
