@@ -9,7 +9,7 @@
     </div>
     <div class="py-2 primary-yellow">
       <p class="font-bold px-4">
-        Potrzeba osób: {{ pointShift.capacity }}
+        Potrzeba osób: {{ availableCapacity }}
       </p>
     </div>
     <div>
