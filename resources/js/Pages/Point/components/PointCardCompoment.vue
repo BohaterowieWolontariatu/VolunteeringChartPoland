@@ -16,7 +16,7 @@
         <div class="">
 
           <div class="flex items-center space-x-5">
-            <div class="flex justify-between w-full">
+            <div class="flex items-center justify-between w-full">
               <div>
                 <p class="font-bold">Potrzeba osób:</p>
               </div>

@@ -28,17 +28,12 @@
     transition
     focus:outline-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
                       aria-expanded="false" aria-controls="flush-collapseOne">
-                Informacje na temat placówki
+                Informacje na temat punktu
               </button>
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse border-0 collapse show"
                  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body py-4 px-5">
-                <p class="text-xl font-bold mb-2">
-                  Informacje na temat punktu
-                </p>
-                <p>
-                  {{ point.address }}
                 <p>
                   <span v-html="point.description"></span>
                 </p>
