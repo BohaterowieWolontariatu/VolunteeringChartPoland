@@ -5,7 +5,7 @@
     <div class="overflow-hidden shadow-md flex flex-col">
       <!-- card header -->
       <div class="px-6 py-4 bg-white border-b border-gray-200 uppercase h-16">
-        <div class="flex content-between">
+        <div class="flex justify-between">
           <div class="font-bold">{{ point.name }}</div>
           <div>{{ point.address }}</div>
         </div>
@@ -14,10 +14,11 @@
       <!-- card body -->
       <div class="flex flex-col p-6 bg-white border-b border-gray-200">
         <div class="">
-          <div>
-            <p class="font-bold">Potrzeba wolontariuszy</p>
-          </div>
-          <div class="flex space-x-5">
+
+          <div class="flex items-center space-x-5">
+            <div>
+              <p class="font-bold">Potrzeba osób:</p>
+            </div>
             <div class="flex items-center space-x-2">
               <div>Dziś</div>
               <div
