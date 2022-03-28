@@ -35,16 +35,12 @@
                  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body py-4 px-5">
                 <p class="text-xl font-bold mb-2">
-                  Informacje na temat placówki
+                  Informacje na temat punktu
                 </p>
                 <p>
                   {{ point.address }}
-                </p>
-                <p class="my-3">
-                  {{ point.lead }}
-                </p>
                 <p>
-                  {{ point.description }}
+                  <span v-html="point.description"></span>
                 </p>
               </div>
             </div>
@@ -104,21 +100,24 @@
                   4. WYBIERZ ZMIANĘ Z KALENDARZA
                 </p>
                 <p>
-                  Kalendarz pokazuje zmiany, które nie mają wystarczającej liczby wolontariuszy, na które nie jesteś jeszcze zapisany. Aby wybrać
+                  Kalendarz pokazuje zmiany, które nie mają wystarczającej liczby wolontariuszy, na które nie jesteś jeszcze zapisany. Aby
+                  wybrać
                   zmianę, zaznacz ją w kalendarzu.
                 </p>
                 <p class="font-bold">
                   5. ZAPISZ SIĘ NA ZMIANĘ
                 </p>
                 <p>
-                  Po wybraniu zmiany, jej dane wyświetlą się na prawo od kalendarza. Jeśli wszysko się zgadza, kliknij przycisk zapisz się na
+                  Po wybraniu zmiany, jej dane wyświetlą się na prawo od kalendarza. Jeśli wszysko się zgadza, kliknij przycisk zapisz się
+                  na
                   zmianę
                 </p>
                 <p class="font-bold">
                   6. WYSZUKAJ SWOJĄ ZMIANĘ
                 </p>
                 <p>
-                  Możesz zobaczyć zmiany, na które się zapisałeś wyszukując je po numerze telefonu w zakładce moje zmiany. Po wybraniu zmiany z
+                  Możesz zobaczyć zmiany, na które się zapisałeś wyszukując je po numerze telefonu w zakładce moje zmiany. Po wybraniu
+                  zmiany z
                   kalendarza, możesz zrezygnować ze zmiany klikając zrezygnuj ze zmiany.
                 </p>
                 <p class="font-bold">
@@ -199,11 +198,11 @@
       <div class="schedule m-5">
         <div class="md:flex md:space-x-4 w-full">
           <point-date-component
-            v-for="schedule in point.schedules"
-            :key="schedule.sheduled_at"
+              v-for="schedule in point.schedules"
+              :key="schedule.sheduled_at"
 
-            :pointDate="point"
-            :schedule="schedule"
+              :pointDate="point"
+              :schedule="schedule"
           />
 
         </div>
@@ -220,11 +219,11 @@ import PointDateComponent from '@/Pages/Point/PointDateComponent.vue';
 
 export default {
   props: ['sessions'],
-  data () {
+  data() {
     return {};
   },
   computed: {
-    point () {
+    point() {
       return this.$page.props.point || [];
     },
   },

@@ -36,7 +36,8 @@
             </div>
           </div>
           <div class="h-28">
-            <p class="mb-1">{{point.lead}}</p>
+            <p class="mb-1">
+              <span v-html="point.lead"></span></p>
           </div>
         </div>
 
