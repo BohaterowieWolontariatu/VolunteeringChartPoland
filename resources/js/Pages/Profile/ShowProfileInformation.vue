@@ -16,19 +16,19 @@
           <div class="grid md:grid-cols-2 text-sm">
             <div class="grid grid-cols-2">
               <div class="px-4 py-2 font-semibold">Imie</div>
-              <div class="px-4 py-2">$NAME</div>
+              <div class="px-4 py-2"> {{$page.props.user.name}}</div>
             </div>
             <div class="grid grid-cols-2">
               <div class="px-4 py-2 font-semibold">Nazwisko</div>
-              <div class="px-4 py-2">$SURNAME</div>
+              <div class="px-4 py-2"> {{$page.props.user.surname}}</div>
             </div>
             <div class="grid grid-cols-2">
               <div class="px-4 py-2 font-semibold">Email</div>
-              <div class="px-4 py-2">$MAIL</div>
+              <div class="px-4 py-2">{{$page.props.user.email}}</div>
             </div>
             <div class="grid grid-cols-2">
               <div class="px-4 py-2 font-semibold">Numer telefonu</div>
-              <div class="px-4 py-2">$PHONE</div>
+              <div class="px-4 py-2">{{$page.props.user.email}}</div>
             </div>
           </div>
         </div>

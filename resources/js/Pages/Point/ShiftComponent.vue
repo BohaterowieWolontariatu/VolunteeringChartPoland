@@ -4,12 +4,12 @@
   >
     <div class="py-2 primary-blue text-white">
       <p class="font-bold text-xl px-4">
-        Potrzeba osób: {{ pointShift.capacity }} w godzinach {{ pointShift.start_time }}-{{ pointShift.end_time }}
+        {{ pointShift.name }} w godzinach {{ pointShift.start_time }}-{{ pointShift.end_time }}
       </p>
     </div>
     <div class="py-2 primary-yellow">
       <p class="font-bold px-4">
-        {{ pointShift.name }}
+        Potrzeba osób: {{ pointShift.capacity }}
       </p>
     </div>
     <div>

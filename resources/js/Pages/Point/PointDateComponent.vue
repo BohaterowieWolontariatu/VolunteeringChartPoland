@@ -6,6 +6,9 @@
       <p class="text-3xl">
         {{ dayName }}
       </p>
+      <p>
+        potrzeba łącznie {{schedule.capacity_sum}}
+      </p>
     </div>
 
     <div>

@@ -89,6 +89,7 @@ class PointController extends Controller
         for ($iDate = $startDate->clone(); $iDate <= $endDate; $iDate = $iDate->addDay()) {
             $point->schedules->push(
                 [
+                    'capacity_sum' => $point->shifts->sum('capacity'),
                     'sheduled_at' => $iDate->clone(),
                     'shifts' => $point->shifts->map(function (Shift $shift) use ($iDate, $point) {
                         $aShift = $shift->toArray();

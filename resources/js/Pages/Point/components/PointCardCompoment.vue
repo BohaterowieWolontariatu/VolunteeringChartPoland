@@ -16,28 +16,32 @@
         <div class="">
 
           <div class="flex items-center space-x-5">
-            <div>
-              <p class="font-bold">Potrzeba osób:</p>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div>Dziś</div>
-              <div
-                  class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-black bg-red-300 border border-red-300 w-8">
-                <div class="text-xs font-normal leading-none max-w-full flex-initial">15</div>
+            <div class="flex justify-between w-full">
+              <div>
+                <p class="font-bold">Potrzeba osób:</p>
               </div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div>Jutro</div>
-              <div
-                  class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-black bg-yellow-300 border border-yellow-300 w-8">
-                <div class="text-xs font-normal leading-none max-w-full flex-initial">7</div>
-              </div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div>Pojutrze</div>
-              <div
-                  class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-black bg-green-300 border border-green-300 w-8">
-                <div class="text-xs font-normal leading-none max-w-full flex-initial">1</div>
+              <div class="flex space-x-2">
+                <div class="flex items-center space-x-2">
+                  <div>Dziś</div>
+                  <div
+                      class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-black bg-red-300 border border-red-300 w-8">
+                    <div class="text-xs font-normal leading-none max-w-full flex-initial">15</div>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <div>Jutro</div>
+                  <div
+                      class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-black bg-yellow-300 border border-yellow-300 w-8">
+                    <div class="text-xs font-normal leading-none max-w-full flex-initial">7</div>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <div>Pojutrze</div>
+                  <div
+                      class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-black bg-green-300 border border-green-300 w-8">
+                    <div class="text-xs font-normal leading-none max-w-full flex-initial">1</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
