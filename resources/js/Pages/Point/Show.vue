@@ -120,68 +120,22 @@
 
       <div class="text-center my-5">
         <p class="text-3xl font-bold">Harmonogram</p>
+        <div class="flex justify-between">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" @click="reloadScheduleByDay(-1)">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+          </svg>
+          <jet-input id="concluded_on" type="date" class="mt-1 block" :value="date" @input="reloadSchedule"
+                     autocomplete="current-concluded_on"/>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" @click="reloadScheduleByDay(1)">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+
       </div>
-      <!--        <div class="container mx-auto">-->
-      <!--          <div-->
-      <!--            class="w-full"-->
-      <!--          >-->
-      <!--            <div class="flex justify-between items-center">-->
-      <!--              <div>-->
-      <!--                <v-btn-->
-      <!--                  class="ma-2"-->
-      <!--                  color="primary"-->
-      <!--                  icon-->
-      <!--                  text-->
-      <!--                  x-large-->
-      <!--                >-->
-      <!--                  <v-icon>mdi-arrow-left-bold</v-icon>-->
-      <!--                </v-btn>-->
-      <!--              </div>-->
-      <!--              <div>-->
-      <!--                <v-menu-->
-      <!--                  v-model="menu2"-->
-      <!--                  :close-on-content-click="false"-->
-      <!--                  :nudge-right="40"-->
-      <!--                  min-width="auto"-->
-      <!--                  offset-y-->
-      <!--                  transition="scale-transition"-->
-      <!--                >-->
-      <!--                  <template v-slot:activator="{ on, attrs }">-->
-      <!--                    <v-text-field-->
-      <!--                      v-model="date"-->
-      <!--                      label="Data"-->
-      <!--                      prepend-icon="mdi-calendar"-->
-      <!--                      readonly-->
-      <!--                      v-bind="attrs"-->
-      <!--                      v-on="on"-->
-      <!--                    ></v-text-field>-->
-      <!--                  </template>-->
-      <!--                  <v-date-picker-->
-      <!--                    v-model="date"-->
-      <!--                    @input="menu2 = false"-->
-      <!--                  ></v-date-picker>-->
-      <!--                </v-menu>-->
-      <!--              </div>-->
-      <!--              <div>-->
-      <!--                <v-btn-->
-      <!--                  class="ma-2"-->
-      <!--                  color="primary"-->
-      <!--                  icon-->
-      <!--                  text-->
-      <!--                  x-large-->
-      <!--                >-->
-      <!--                  <v-icon>mdi-arrow-right-bold</v-icon>-->
-      <!--                </v-btn>-->
-      <!--              </div>-->
-
-
-      <!--            </div>-->
-      <!--          </div>-->
-      <!--        </div>-->
-
 
       <div class="schedule m-5">
         <div class="md:flex md:space-x-4 w-full">
+
           <point-date-component
             v-for="schedule in point.schedules"
             :key="schedule.sheduled_at"
@@ -201,9 +155,11 @@
 import AppLayout from '@/Layouts/AppLayout';
 import Breadcrumbs from '@/Pages/Breadcrumbs.vue';
 import PointDateComponent from '@/Pages/Point/PointDateComponent.vue';
+import JetInput from "@/Jetstream/Input.vue";
 
 export default {
   props: ['sessions'],
+
   data() {
     return {};
   },
@@ -211,11 +167,27 @@ export default {
     point() {
       return this.$page.props.point || [];
     },
+    date() {
+      return this.$page.props.date;
+    }
+  },
+  methods: {
+    reloadSchedule(date){
+      this.$inertia.get(this.route('points.show', {point: this.point, date}));
+    },
+    reloadScheduleByDay(operation)
+    {
+      let date = new Date(this.date);
+      date.setDate(date.getDate() + operation)
+      date = date.toISOString().split('T')[0]
+      this.$inertia.get(this.route('points.show', {point: this.point, date}));
+    }
   },
   components: {
     PointDateComponent,
     Breadcrumbs,
     AppLayout,
+    JetInput,
   },
 };
 </script>

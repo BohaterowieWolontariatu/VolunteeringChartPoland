@@ -17,7 +17,7 @@
         v-for="shift in schedule.shifts"
         :pointShift="shift"
         :schedule_at="schedule.sheduled_at"
-        :key="shift.id"
+        :key="'shift-'+shift.id"
       />
     </div>
   </div>

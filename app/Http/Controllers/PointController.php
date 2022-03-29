@@ -103,9 +103,9 @@ class PointController extends Controller
                 ]
             );
         }
-
         return Inertia::render('Point/Show', [
             'point' => $point,
+            'date' => $startDate->format('Y-m-d'),
         ]);
     }
 

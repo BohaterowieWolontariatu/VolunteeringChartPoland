@@ -16,7 +16,7 @@
       <SlotComponent
         v-for="(slot) in pointShift.slots"
         :shiftSlot="slot"
-        :key="slot.id"
+        :key="'slot-'+slot.id"
         :pointShift="pointShift"
         :schedule_at="schedule_at"
         class=""
