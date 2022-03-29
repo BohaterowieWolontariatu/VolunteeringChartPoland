@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-start items-center">
+  <div class="flex justify-start items-center lg:ml-0 ml-2">
     <div class="flex items-center py-4 overflow-y-auto whitespace-nowrap">
 
       <inertia-link

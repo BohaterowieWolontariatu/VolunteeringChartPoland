@@ -139,11 +139,13 @@
 
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
-                    <div class="pt-2 pb-3 space-y-1">
-                        <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </jet-responsive-nav-link>
-                    </div>
+
+<!--                   TODO 29.03.20222 Maciej Kaźmierski: Nie jestem pewien czy to nam potrzebne komentuje to-->
+<!--                    <div class="pt-2 pb-3 space-y-1">-->
+<!--                        <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">-->
+<!--                            Dashboard-->
+<!--                        </jet-responsive-nav-link>-->
+<!--                    </div>-->
 
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200">
@@ -159,10 +161,12 @@
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
-                                Profile
+                            <jet-responsive-nav-link :href="route('points.index')" :active="route().current('points')">
+                              Placówki
                             </jet-responsive-nav-link>
-
+                            <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
+                                Profil
+                            </jet-responsive-nav-link>
                             <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
                                 API Tokens
                             </jet-responsive-nav-link>
@@ -170,7 +174,7 @@
                             <!-- Authentication -->
                             <form method="POST" @submit.prevent="logout">
                                 <jet-responsive-nav-link as="button">
-                                    Logout
+                                    Wyloguj
                                 </jet-responsive-nav-link>
                             </form>
 
@@ -226,6 +230,9 @@
                 <slot></slot>
             </main>
 
+            <app-footer />
+
+
             <!-- Modal Portal -->
             <portal-target name="modal" multiple>
             </portal-target>
@@ -240,9 +247,11 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import AppFooter from "./AppFooter";
 
     export default {
         components: {
+          AppFooter,
             JetApplicationMark,
             JetBanner,
             JetDropdown,
