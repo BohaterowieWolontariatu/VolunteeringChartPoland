@@ -4,17 +4,14 @@
     <!--    <div class="max-w-2xl sm:px-6 lg:px-8">-->
     <div class="overflow-hidden shadow-md flex flex-col">
       <!-- card header -->
-      <div class="px-6 py-4 bg-white border-b border-gray-200 uppercase h-16">
-        <div class="flex justify-between">
-          <div class="font-bold">{{ point.name }}</div>
-          <div>{{ point.address }}</div>
-        </div>
+      <div class="px-6 font-bold py-4 bg-white border-b border-gray-200 uppercase h-16">
+        <div>{{ point.name }}</div>
       </div>
 
       <!-- card body -->
       <div class="flex flex-col p-6 bg-white border-b border-gray-200">
         <div class="">
-
+          <span>{{ point.address }}</span><br />
           <div class="flex items-center space-x-5">
             <div class="flex items-center justify-between w-full">
               <div>
@@ -47,8 +44,10 @@
           </div>
         </div>
         <div class="h-28">
+          <br />
           <p class="mb-1">
-            <span v-html="point.lead"></span></p>
+            <span v-html="point.lead"></span>
+          </p>
         </div>
       </div>
 
