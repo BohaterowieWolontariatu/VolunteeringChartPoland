@@ -50,7 +50,7 @@
                 </td>
                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   <warning-button>
-                    <InertiaLink method="get" :href="route('admin.points.edit', point)">
+                    <InertiaLink :href="route('admin.points.edit', point)">
                       Edytuj
                     </InertiaLink>
                   </warning-button>
