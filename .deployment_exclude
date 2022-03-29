@@ -1,7 +1,5 @@
 - build.xml
 - cache.properties
-- composer.json
-- composer.lock
 - .deployment_exclude
 - .editorconfig
 - .env.example
