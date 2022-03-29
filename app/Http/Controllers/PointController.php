@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Classes\PointsAdditionalData;
 use App\Http\Requests\Point\StorePointRequest;
 use App\Http\Requests\Point\UpdatePointRequest;
 use App\Models\Point;
@@ -24,9 +25,11 @@ class PointController extends Controller
     {
         $points = Point::query()
             ->orderBy('name')
-            ->with('shifts')
+            ->with(['shifts', 'shifts.slots'])
             ->paginate();
 
+        $pointsAdditionalData = new PointsAdditionalData();
+        $points = $pointsAdditionalData->countFreeSlotsForPoints($points);
 
         return Inertia::render('Point/Index', [
             'points' => $points,
