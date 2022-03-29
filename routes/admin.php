@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PointController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('users', UserController::class)->except(['create', 'store',]);
+Route::resource('users', UserController::class)->except(['create', 'store', 'show', 'destroy',]);
 Route::resource('points', PointController::class);
 
 Route::redirect('/', \route('admin.users.index'));
