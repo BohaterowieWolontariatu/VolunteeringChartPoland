@@ -1,10 +1,10 @@
 <template>
   <app-layout>
-    <template #header>
-      <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-        Placówki
-      </h2>
-    </template>
+<!--    <template #header>-->
+<!--      <h2 class="font-semibold text-2xl text-gray-800 leading-tight">-->
+<!--        Placówki-->
+<!--      </h2>-->
+<!--    </template>-->
 
     <div class="container mx-auto">
       <breadcrumbs/>

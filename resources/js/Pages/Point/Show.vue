@@ -1,10 +1,10 @@
 <template>
   <app-layout v-if="point">
-    <template #header>
-      <h1 class="font-semibold text-2xl text-gray-800 leading-tight">
-        Punkt: {{ point.name }}
-      </h1>
-    </template>
+<!--    <template #header>-->
+<!--      <h1 class="font-semibold text-2xl text-gray-800 leading-tight">-->
+<!--        Punkt: {{ point.name }}-->
+<!--      </h1>-->
+<!--    </template>-->
 
     <div class="container mx-auto">
 
