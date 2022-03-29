@@ -46,6 +46,8 @@ pipeline {
           sh """ echo DB_USERNAME=$MYSQL_CREDS_USR >> .env """
           sh """ echo DB_PASSWORD=$MYSQL_CREDS_PSW >> .env """
           sh """ echo DB_DATABASE=$DATABASE_NAME >> .env """
+          sh """ echo MAIL_USERNAME=$MAIL_USERNAME >> .env """
+          sh """ echo MAIL_PASSWORD=$MAIL_PASSWORD >> .env """
 
           sh 'php artisan key:generate'
         }
@@ -136,6 +138,8 @@ pipeline {
       MYSQL_CREDS = credentials('mysql-volunteering_chart_poland')
       BASE_NAME = """${sh(returnStdout: true,script: "echo $JOB_NAME | grep -o '^[^(\\/|\\)]*'").trim()}"""
       DATABASE_NAME = 'volunteering_chart_poland'
+      MAIL_USERNAME = '1.puzzleup.smtp'
+      MAIL_PASSWORD = credentials('	mail-password-volunteering_chart_poland')
     }
     post {
       always {

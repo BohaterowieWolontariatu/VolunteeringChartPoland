@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAgreementRequest;
+use App\Mail\ConfirmationOfVolunteering;
 use App\Models\Agreement;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -12,6 +14,7 @@ class AgreementController extends Controller
 {
     public function create()
     {
+        Mail::to(auth('sanctum')->user()->email)->send(new ConfirmationOfVolunteering());
         return Inertia::render('Agreement/Create');
     }
 
