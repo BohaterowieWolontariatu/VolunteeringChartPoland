@@ -67,17 +67,18 @@ class Kernel extends HttpKernel
         ],
 
         'admin' => [
-            EncryptCookies::class,
-            AddQueuedCookiesToResponse::class,
-            StartSession::class,
-            AuthenticateSession::class,
-            ShareErrorsFromSession::class,
-            VerifyCsrfToken::class,
-            SubstituteBindings::class,
+//            EncryptCookies::class,
+//            AddQueuedCookiesToResponse::class,
+//            StartSession::class,
+//            AuthenticateSession::class,
+//            ShareErrorsFromSession::class,
+//            VerifyCsrfToken::class,
+//            SubstituteBindings::class,
+//            HandleInertiaRequests::class,
+
             'auth:sanctum',
             CheckIfUserActive::class,
             CheckIfUserIsAdmin::class,
-            HandleInertiaRequests::class,
         ],
 
         'api' => [

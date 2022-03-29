@@ -1,19 +1,14 @@
 <template>
-  <app-layout>
-    <template #header>
-      <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-        Użytkownicy
-      </h2>
-    </template>
-
+  <app-admin-layout>
     <div class="container mx-auto">
       <breadcrumbs/>
 
 
       <pre class="bg-white">{{ $page.props }}</pre>
+      <pre class="bg-white">{{ users }}</pre>
 
     </div>
-  </app-layout>
+  </app-admin-layout>
 </template>
 
 <script>
@@ -29,5 +24,12 @@ export default {
     Breadcrumbs,
     PointCardComponent,
   },
+
+  props: {
+    users: {
+      type: Object
+    }
+  }
+
 }
 </script>
