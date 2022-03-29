@@ -83,7 +83,7 @@
                 <jet-label :value="$trans('translations.agreement.address')"/>
                 <textarea class="w-full" v-model="form.address"></textarea>
               </div>
-              <input-error :message="this.$page.props.errors.agree_to_covid_recommendations"></input-error>
+              <input-error :message="this.$page.props.errors.address"></input-error>
 
               <div class="agreement">
                 <p class="font-bold text-lg pt-2">
@@ -188,7 +188,7 @@ export default {
         email: '',
         password: '',
         remember: false,
-        sign_date: '',
+        sign_date: (new Date()).toISOString().split('T')[0],
         address: '',
         is_adult: 0,
         agree_to_covid_recommendations: 0,
@@ -206,7 +206,6 @@ export default {
 
   methods: {
     submit() {
-      console.log(this.form);
       this.form.post(this.route('agreement.store'))
     }
   },

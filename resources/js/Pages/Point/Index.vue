@@ -8,15 +8,19 @@
 
     <div class="container mx-auto">
       <breadcrumbs/>
-      <div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
-        <point-card-component
+      <div>
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+
+          <point-card-component
             v-for="point in $page.props.points.data"
             :key="point.id"
 
             :point="point"
-        />
+          />
 
+        </div>
       </div>
+
     </div>
   </app-layout>
 </template>

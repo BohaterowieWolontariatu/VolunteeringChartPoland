@@ -1,5 +1,14 @@
 <template>
   <div class="min-h-screen background-gdansk flex justify-center">
+    <div class="fixed top-0 px-6 py-4 sm:block">
+        <inertia-link :href="route('login')" class="text-sm text-white text-2xl mr-5">
+          Logowanie
+        </inertia-link>
+
+        <inertia-link :href="route('register')" class="text-sm text-white text-2xl">
+          Rejestracja
+        </inertia-link>
+    </div>
     <jet-authentication-card>
         <template #logo>
             <jet-authentication-card-logo />

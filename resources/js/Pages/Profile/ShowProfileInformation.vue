@@ -28,7 +28,7 @@
             </div>
             <div class="grid grid-cols-2">
               <div class="px-4 py-2 font-semibold">Numer telefonu</div>
-              <div class="px-4 py-2">{{$page.props.user.email}}</div>
+              <div class="px-4 py-2">{{$page.props.user.phone}}</div>
             </div>
           </div>
         </div>

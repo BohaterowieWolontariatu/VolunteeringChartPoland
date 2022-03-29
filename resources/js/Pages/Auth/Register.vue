@@ -1,84 +1,93 @@
 <template>
   <div class="min-h-screen background-gdansk flex justify-center">
-  <jet-authentication-card>
-    <template #logo>
-      <jet-authentication-card-logo/>
-    </template>
+    <div class="fixed top-0 px-6 py-4 sm:block">
+      <inertia-link :href="route('login')" class="text-sm text-white text-2xl mr-5">
+        Logowanie
+      </inertia-link>
 
-    <jet-validation-errors class="mb-4"/>
+      <inertia-link :href="route('register')" class="text-sm text-white text-2xl">
+        Rejestracja
+      </inertia-link>
+    </div>
+    <jet-authentication-card>
+      <template #logo>
+        <jet-authentication-card-logo/>
+      </template>
 
-    <form @submit.prevent="submit">
-      <div>
-        <jet-label for="name" value="Imię"/>
-        <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus
-                   autocomplete="name"/>
-      </div>
-      <div class="mt-4">
-        <jet-label for="surname" value="Nazwisko"/>
-        <jet-input id="surname" type="text" class="mt-1 block w-full" v-model="form.surname" required
-                   autocomplete="surname"/>
-      </div>
+      <jet-validation-errors class="mb-4"/>
 
-      <div class="mt-4">
-        <jet-label for="email" value="Email"/>
-        <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required/>
-      </div>
+      <form @submit.prevent="submit">
+        <div>
+          <jet-label for="name" value="Imię"/>
+          <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus
+                     autocomplete="name"/>
+        </div>
+        <div class="mt-4">
+          <jet-label for="surname" value="Nazwisko"/>
+          <jet-input id="surname" type="text" class="mt-1 block w-full" v-model="form.surname" required
+                     autocomplete="surname"/>
+        </div>
 
-      <div class="mt-4">
-        <jet-label for="pesel" value="Pesel"/>
-        <jet-input id="pesel" type="text" class="mt-1 block w-full" v-model="form.pesel" required
-                   autocomplete="pesel"/>
-      </div>
+        <div class="mt-4">
+          <jet-label for="email" value="Email"/>
+          <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required/>
+        </div>
 
-      <div class="mt-4">
-        <jet-label for="phone" value="Telefon"/>
-        <jet-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required
-                   autocomplete="phone"/>
-      </div>
+        <div class="mt-4">
+          <jet-label for="pesel" value="Pesel"/>
+          <jet-input id="pesel" type="text" class="mt-1 block w-full" v-model="form.pesel" required
+                     autocomplete="pesel"/>
+        </div>
 
-      <div class="mt-4">
-        <jet-label for="password" value="Hasło"/>
-        <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
-                   autocomplete="new-password"/>
-      </div>
+        <div class="mt-4">
+          <jet-label for="phone" value="Telefon"/>
+          <jet-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required
+                     autocomplete="phone"/>
+        </div>
 
-      <div class="mt-4">
-        <jet-label for="password_confirmation" value="Potwierdź hasło"/>
-        <jet-input id="password_confirmation" type="password" class="mt-1 block w-full"
-                   v-model="form.password_confirmation" required autocomplete="new-password"/>
-      </div>
+        <div class="mt-4">
+          <jet-label for="password" value="Hasło"/>
+          <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
+                     autocomplete="new-password"/>
+        </div>
 
-      <div class="mt-4">
-        <jet-checkbox name="has_agreement_signed" id="has_agreement_signed" v-model="form.has_agreement_signed"/>
-        <label for="has_agreement_signed">Podpisałem porozumienie o wolontariacie</label>
-      </div>
+        <div class="mt-4">
+          <jet-label for="password_confirmation" value="Potwierdź hasło"/>
+          <jet-input id="password_confirmation" type="password" class="mt-1 block w-full"
+                     v-model="form.password_confirmation" required autocomplete="new-password"/>
+        </div>
 
-      <div class="mt-4" v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature">
-        <jet-label for="terms">
-          <div class="flex items-center">
-            <jet-checkbox name="terms" id="terms" v-model="form.terms"/>
+        <div class="mt-4">
+          <jet-checkbox name="has_agreement_signed" id="has_agreement_signed" v-model="form.has_agreement_signed"/>
+          <label for="has_agreement_signed">Podpisałem porozumienie o wolontariacie</label>
+        </div>
 
-            <div class="ml-2">
-              I agree to the <a target="_blank" :href="route('terms.show')"
-                                class="underline text-sm text-gray-600 hover:text-gray-900">Terms of Service</a> and <a
-              target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 hover:text-gray-900">Privacy
-              Policy</a>
+        <div class="mt-4" v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature">
+          <jet-label for="terms">
+            <div class="flex items-center">
+              <jet-checkbox name="terms" id="terms" v-model="form.terms"/>
+
+              <div class="ml-2">
+                I agree to the <a target="_blank" :href="route('terms.show')"
+                                  class="underline text-sm text-gray-600 hover:text-gray-900">Terms of Service</a> and <a
+                target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 hover:text-gray-900">Privacy
+                Policy</a>
+              </div>
             </div>
-          </div>
-        </jet-label>
-      </div>
+          </jet-label>
+        </div>
 
-      <div class="flex items-center justify-end mt-4">
-        <inertia-link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-          Posiadasz już konto?
-        </inertia-link>
+        <div class="flex items-center justify-end mt-4">
+          <inertia-link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
+            Posiadasz już konto?
+          </inertia-link>
 
-        <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-          Zarejestruj
-        </jet-button>
-      </div>
-    </form>
-  </jet-authentication-card>
+          <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            Zarejestruj
+          </jet-button>
+        </div>
+      </form>
+    </jet-authentication-card>
   </div>
 </template>
 
