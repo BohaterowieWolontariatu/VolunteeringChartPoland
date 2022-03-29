@@ -156,6 +156,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import Breadcrumbs from '@/Pages/Breadcrumbs.vue';
 import PointDateComponent from '@/Pages/Point/PointDateComponent.vue';
 import JetInput from "@/Jetstream/Input.vue";
+import moment from "moment"
 
 export default {
   props: ['sessions'],
@@ -173,14 +174,13 @@ export default {
   },
   methods: {
     reloadSchedule(date){
-      this.$inertia.get(this.route('points.show', {point: this.point, date}));
+      this.$inertia.get(this.route('points.show', {point: this.point, date}), {}, {preserveScroll: true});
     },
     reloadScheduleByDay(operation)
     {
-      let date = new Date(this.date);
-      date.setDate(date.getDate() + operation)
-      date = date.toISOString().split('T')[0]
-      this.$inertia.get(this.route('points.show', {point: this.point, date}));
+      let date = moment(this.date);
+      date = date.add(operation, 'days').format('YYYY-MM-DD');
+      this.$inertia.get(this.route('points.show', {point: this.point, date}), {}, {preserveScroll: true});
     }
   },
   components: {
