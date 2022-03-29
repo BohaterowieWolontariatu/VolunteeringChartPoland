@@ -25,7 +25,7 @@ class PointController extends Controller
     {
         $points = Point::query()
             ->orderBy('name')
-            ->with(['shifts', 'shifts.slots'])
+            ->with('shifts')
             ->paginate();
 
         $pointsAdditionalData = new PointsAdditionalData();
