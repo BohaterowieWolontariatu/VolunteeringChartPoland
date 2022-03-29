@@ -134,7 +134,7 @@
       </div>
 
       <div class="schedule m-5">
-        <div class="md:flex md:space-x-4 w-full">
+        <div class="md:flex md:space-x-14 w-full">
 
           <point-date-component
             v-for="schedule in point.schedules"

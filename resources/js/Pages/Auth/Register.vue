@@ -59,7 +59,7 @@
 
         <div class="mt-4">
           <jet-checkbox name="has_agreement_signed" id="has_agreement_signed" v-model="form.has_agreement_signed"/>
-          <label for="has_agreement_signed">Podpisałem porozumienie o wolontariacie</label>
+          <label for="has_agreement_signed">Podpisałem/am porozumienie o wolontariacie</label>
         </div>
 
         <div class="mt-4" v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature">
