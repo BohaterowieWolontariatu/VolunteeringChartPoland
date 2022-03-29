@@ -76,8 +76,8 @@ class Kernel extends HttpKernel
             SubstituteBindings::class,
             'auth:sanctum',
             CheckIfUserActive::class,
-            HandleInertiaRequests::class,
             CheckIfUserIsAdmin::class,
+            HandleInertiaRequests::class,
         ],
 
         'api' => [

@@ -1,5 +1,5 @@
 <template>
-  <app-admin-layout>
+  <app-layout>
     <template #header>
       <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
         Użytkownicy
@@ -13,18 +13,18 @@
       <pre class="bg-white">{{ $page.props }}</pre>
 
     </div>
-  </app-admin-layout>
+  </app-layout>
 </template>
 
 <script>
 import PointCardComponent from '@/Pages/Point/components/PointCardCompoment.vue';
 import Breadcrumbs from '@/Pages/Breadcrumbs.vue';
-import AppAdminLayout from '@/Admin/Layouts/AppAdminLayout.vue';
+import AppAdminLayout from '@/Layouts/AppAdminLayout.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 export default {
-  props: ['sessions'],
-
   components: {
+    AppLayout,
     AppAdminLayout,
     Breadcrumbs,
     PointCardComponent,
