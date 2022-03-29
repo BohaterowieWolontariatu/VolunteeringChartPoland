@@ -117,7 +117,7 @@ return [
     'uploaded'             => 'Nie udało się wgrać pliku :attribute.',
     'url'                  => 'Format pola :attribute jest nieprawidłowy.',
     'uuid'                 => 'Pole :attribute musi być poprawnym identyfikatorem UUID.',
-
+    'pesel' => 'Pole Pesel musi być podane w poprawnym formacie.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
