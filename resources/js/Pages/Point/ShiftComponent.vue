@@ -14,11 +14,12 @@
     </div>
     <div>
       <SlotComponent
-        v-for="(slot) in pointShift.slots"
+        v-for="(slot, i) in pointShift.slots"
         :shiftSlot="slot"
         :key="slot.id"
         :pointShift="pointShift"
         :schedule_at="schedule_at"
+        :number="i + 1"
         class=""
         style="min-height:50px"
       />
@@ -26,13 +27,23 @@
         v-for="i in availableCapacity"
         :pointShift="pointShift"
         :schedule_at="schedule_at"
+        :number="i + pointShift.slots.length"
+        :isUserAssigned="isUserAssigned"
         :key="i"
       ></EmptySlotComponent>
 
       <ReserveListSignComponent
+        v-if="!isUserAssigned"
         :pointShift="pointShift"
+        :isUserAssigned="isUserAssigned"
         :schedule_at="schedule_at"
       />
+      <div
+        v-else
+        class="min-height-60 p-4"
+      >
+
+      </div>
     </div>
   </div>
 </template>
@@ -47,7 +58,11 @@ export default {
   components: { EmptySlotComponent, ReserveListSignComponent, SlotComponent, JetSectionBorder },
 
   computed: {
-
+    isUserAssigned() {
+      return !!this.pointShift.slots.find((el) => {
+        return el.user.id === this.$page.props.user.id;
+      })
+    },
     availableCapacity () {
       return Math.max(0, this.pointShift.capacity - this.pointShift.slots.length);
     },

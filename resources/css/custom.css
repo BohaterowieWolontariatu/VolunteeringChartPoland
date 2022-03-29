@@ -11,3 +11,28 @@
     -o-background-size: cover;
     background-size: cover;
 }
+
+.min-height-60 {
+    min-height:60px;
+}
+.bg-custom-green {
+    background-color: #88c439;
+}
+.bg-custom-blue {
+    background-color: #273972;
+}
+.bg-custom-dark {
+    background-color: #2b2a29;
+}
+.bg-custom-grey {
+    background-color: #c5c6c6;
+}
+.bg-custom-grey {
+    background-color: #c5c6c6;
+}
+.bg-custom-pink {
+    background-color: #c4468f;
+}
+.bg-custom-orange {
+    background-color: #ef7f1a;
+}

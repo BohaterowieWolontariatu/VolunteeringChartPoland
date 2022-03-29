@@ -3,9 +3,10 @@
     class="text-center sm:w-full md:w-1/2"
   >
     <div :class="colorClassByDay" class="py-2 text-white">
-      <p class="text-3xl">
-        {{ dayName }}
-      </p>
+      <div>
+        <div class="text-3xl">{{ dayName }}</div>
+        <p>{{date}}</p>
+      </div>
       <p>
         potrzeba łącznie {{schedule.capacity_sum}}
       </p>
@@ -14,6 +15,7 @@
     <div>
 
       <ShiftComponent
+        class="mt-4"
         v-for="shift in schedule.shifts"
         :pointShift="shift"
         :schedule_at="schedule.sheduled_at"
@@ -30,7 +32,14 @@ export default {
   components: { ShiftComponent },
 
   computed: {
+    date() {
+      let date = new Date(this.schedule.sheduled_at);
+      let dd = String(date.getDate()).padStart(2, '0');
+      let mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+      let yyyy = date.getFullYear();
 
+      return `${dd}-${mm}-${yyyy}`
+    },
     dayName () {
       let date = new Date(this.schedule.sheduled_at);
       switch (date.getDay()) {
