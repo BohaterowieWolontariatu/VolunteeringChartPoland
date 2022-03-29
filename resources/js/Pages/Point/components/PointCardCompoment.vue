@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col justify-between px-4">
+  <div class="w-full flex flex-col justify-between">
 
     <!--    <div class="max-w-2xl sm:px-6 lg:px-8">-->
     <div class="overflow-hidden shadow-md flex flex-col">
@@ -12,11 +12,9 @@
       <div class="flex flex-col p-6 bg-white border-b border-gray-200">
         <div class="">
           <span>{{ point.address }}</span><br />
+          <p class="font-bold">Potrzeba osób:</p>
           <div class="flex items-center space-x-5">
             <div class="flex items-center justify-between w-full">
-              <div>
-                <p class="font-bold">Potrzeba osób:</p>
-              </div>
               <div class="flex space-x-2">
                 <div class="flex items-center space-x-2">
                   <div>Dziś</div>

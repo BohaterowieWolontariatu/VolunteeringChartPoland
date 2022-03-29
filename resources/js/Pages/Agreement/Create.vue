@@ -206,7 +206,6 @@ export default {
 
   methods: {
     submit() {
-      console.log(this.form);
       this.form.post(this.route('agreement.store'))
     }
   },
