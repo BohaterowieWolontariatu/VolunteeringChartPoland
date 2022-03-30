@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         User::factory()->create(
             [
                 'email' => 'admin@example.com',
-                'has_agreement_signed' => 1
+                'has_agreement_signed' => true,
+                'is_admin' => true,
             ]
         );
         Language::factory()->count(2)->create();

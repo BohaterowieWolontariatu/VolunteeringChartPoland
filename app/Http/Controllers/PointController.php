@@ -29,6 +29,7 @@ class PointController extends Controller
             ->paginate();
 
         $pointsAdditionalData = new PointsAdditionalData();
+
         $points = $pointsAdditionalData->countFreeSlotsForPoints($points);
 
         return Inertia::render('Point/Index', [
